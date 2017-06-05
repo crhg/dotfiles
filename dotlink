@@ -1,1 +1,6 @@
 .zshrc,.zshrc
+.zlogin,.zlogin
+.zprofile,.zprofile
+.zshenv,.zshenv
+.vimrc,.vimrc
+.vim,.vim

@@ -1,0 +1,7 @@
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle']
+
+[[plugins]]
+repo = 'bpearson/vim-phpcs'
+on_cmd = ['CodeSniff', 'CodeSniffErrorOnly']
