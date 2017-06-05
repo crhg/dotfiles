@@ -65,6 +65,14 @@ __zshrc::brew_file_wrapper_init() {
 __zshrc::brew_file_wrapper_init
 
 # zplug
+if [ ! -d ~/.zplug ]; then
+    printf "Install zplug? [y/N]: "
+    if read -q; then
+        echo;
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+    fi
+fi
+
 source ~/.zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2 # loadのcompinitより後に読まないと補完が効かない
@@ -77,7 +85,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 # zplug "b4b4r07/enhancd", use:init.sh
 zplug "crhg/enhancd", at:enhancd_home_arg, use:init.sh
 zplug "rupa/z", use:"*.sh"
-zplug "ssh0/dot", use:"*.sh"
+zplug "ssh0/dot", use:"*.sh", defer:2
 
 # check コマンドで未インストール項目があるかどうか verbose にチェックし
 # false のとき（つまり未インストール項目がある）y/N プロンプトで
