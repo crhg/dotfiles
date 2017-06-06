@@ -4,3 +4,5 @@
 .zshenv,.zshenv
 .vimrc,.vimrc
 .vim,.vim
+.profile,.profile
+.perltidyrc,.perltidyrc
