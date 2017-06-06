@@ -54,15 +54,21 @@ setopt share_history
 setopt EXTENDED_HISTORY
 
 # brew file wrapper
-__zshrc::brew_file_wrapper_init() {
-    # brew_prefix=$(brew --prefix)
-    # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
-    brew_prefix=/usr/local
-    if [ -f $brew_prefix/etc/brew-wrap ];then
-        source $brew_prefix/etc/brew-wrap
-    fi
-}
-__zshrc::brew_file_wrapper_init
+case $OSTYPE in
+    darwin*)
+        __zshrc::brew_file_wrapper_init() {
+            # __zshrc::debug_print brew_file_wrapper_init
+            # brew_prefix=$(brew --prefix)
+            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
+            brew_prefix=/usr/local
+            if [ -f $brew_prefix/etc/brew-wrap ];then
+                source $brew_prefix/etc/brew-wrap
+            fi
+        }
+        __zshrc::brew_file_wrapper_init
+        unfunction __zshrc::brew_file_wrapper_init
+        ;;
+esac
 
 # zplug
 if [ ! -d ~/.zplug ]; then
@@ -109,16 +115,15 @@ fi
 # プラグインを読み込み、コマンドにパスを通す
 zplug load # --verbose
 
-# 必要に応じてzcompileする
+# zcompdumpを必要に応じてzcompileする
 __zshrc::zcompile_update() {
     if [ -f $1 -a \! \( -f $1.zwc -a $1.zwc -nt $1 \) ]; then
         zcompile $1
     fi
 }
-
-# zcompdumpを必要に応じてzcompileする
 __zshrc::zcompile_update ~/.zplug/zcompdump
 __zshrc::zcompile_update ~/.zcompdump
+unfunction __zshrc::zcompile_update
 
 # zsh-history-substring-searchのキーバインド
 if whence history-substring-search-up > /dev/null; then
@@ -149,5 +154,6 @@ __zshrc::gcloud_sdk_init() {
     fi
 }
 __zshrc::gcloud_sdk_init
+unfunction __zshrc::gcloud_sdk_init
 
 # End of lines added by compinstall
