@@ -32,7 +32,14 @@ setopt equals
 setopt magic_equal_subst
 setopt print_eight_bit
 
-alias ls='gls -Fh --color=always --width=$COLUMNS'
+case $VENDOR in
+    ubuntu)
+        alias ls='ls -Fh --color=always --width=$COLUMNS'
+        ;;
+    *)
+        alias ls='gls -Fh --color=always --width=$COLUMNS'
+        ;;
+esac
 export LESS=-R
 # alias crontab='crontab -i'
 
