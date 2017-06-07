@@ -36,7 +36,9 @@ set hlsearch
 noremap <esc><esc> :noh<cr>
 
 " OSのクリップボードを使う設定
-set clipboard=unnamed,autoselect
+if has('mac') && ! exists("$SSH_CLIENT")
+    set clipboard=unnamed,autoselect
+endif
 
 " 文字列に埋め込まれたSQLやHTMLの色づけ
 let php_sql_query=1
