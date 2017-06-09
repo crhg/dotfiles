@@ -86,6 +86,9 @@ if [ ! -d ~/.zplug ]; then
     fi
 fi
 
+export ZPLUG_LOADFILE=~/.zplug_packages.zsh
+[ -f $ZPLUG_LOADFILE ] || touch $ZPLUG_LOADFILE # ファイルがないとログが出てうるさいので作る
+
 source ~/.zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2 # loadのcompinitより後に読まないと補完が効かない
