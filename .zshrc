@@ -33,7 +33,7 @@ setopt magic_equal_subst
 setopt print_eight_bit
 
 case $VENDOR in
-    ubuntu)
+    ubuntu|redhat)
         alias ls='ls -Fh --color=always --width=$COLUMNS'
         ;;
     *)
