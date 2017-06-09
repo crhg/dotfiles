@@ -64,7 +64,7 @@ setopt EXTENDED_HISTORY
 case $OSTYPE in
     darwin*)
         __zshrc::brew_file_wrapper_init() {
-            # __zshrc::debug_print brew_file_wrapper_init
+            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
             # brew_prefix=$(brew --prefix)
             # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
             brew_prefix=/usr/local
