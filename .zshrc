@@ -118,7 +118,7 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
             echo; zplug install
 
             # XXX: zplug以下の*.zshは全部zcompileしてみる
-            for i in ~/.zplug/**/*.zsh; do
+            for i in ~/.zplug/**/*.{sh,zsh}; do
                 zcompile $i
             done
         fi
