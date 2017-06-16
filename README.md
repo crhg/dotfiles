@@ -12,4 +12,4 @@ zsh =(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/d
 
 最低以下のインストールはソースからやる必要あり(yumのでは古かったりしてうまくいかない)
 
-curl, git, vim+lua
+zsh, curl, git, vim+lua
