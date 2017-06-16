@@ -102,7 +102,7 @@ zplug "$ZPLUG_PACKAGE", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 # zplug "b4b4r07/enhancd", use:init.sh
-zplug "crhg/enhancd", at:enhancd_home_arg, use:init.sh
+zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh"
 zplug "ssh0/dot", use:"*.sh", defer:2
 
