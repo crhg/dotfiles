@@ -95,15 +95,15 @@ export ZPLUG_LOADFILE=~/.zplug_packages.zsh
 source ~/.zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2 # loadのcompinitより後に読まないと補完が効かない
-zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "$ZPLUG_PACKAGE", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --self-manage'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 # zplug "b4b4r07/enhancd", use:init.sh
 zplug "crhg/enhancd", use:init.sh
-zplug "rupa/z", use:"*.sh"
+zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh", defer:2
 
 # check コマンドで未インストール項目があるかどうか verbose にチェックし
