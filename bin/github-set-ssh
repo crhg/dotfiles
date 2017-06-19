@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if git remote get-url origin >/dev/null; then
+    git remote set-url origin `git remote get-url origin | sed s%https://github.com/%git@github.com:%`
+fi
