@@ -87,7 +87,8 @@ export ZPLUG_LOADFILE=~/.zplug_packages.zsh
 
 source ~/.zplug/init.zsh
 
-zplug "plugins/laravel5", from:oh-my-zsh, defer:2 # loadのcompinitより後に読まないと補完が効かない
+zplug "plugins/laravel5", from:oh-my-zsh, defer:2
+zplug "plugins/composer", from:oh-my-zsh, defer:2
 zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
