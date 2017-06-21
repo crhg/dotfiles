@@ -6,6 +6,7 @@ repo = 'fatih/vim-go'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
+if = 'has("lua")'
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
