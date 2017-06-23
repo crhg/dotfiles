@@ -53,23 +53,6 @@ setopt hist_expand
 setopt share_history
 setopt EXTENDED_HISTORY
 
-# brew file wrapper
-case $OSTYPE in
-    darwin*)
-        __zshrc::brew_file_wrapper_init() {
-            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
-            # brew_prefix=$(brew --prefix)
-            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
-            brew_prefix=/usr/local
-            if [ -f $brew_prefix/etc/brew-wrap ];then
-                source $brew_prefix/etc/brew-wrap
-            fi
-        }
-        __zshrc::brew_file_wrapper_init
-        unfunction __zshrc::brew_file_wrapper_init
-        ;;
-esac
-
 # macならkeychainからssh-addする
 case $OSTYPE in
     darwin*)
@@ -154,6 +137,24 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
+
+# brew file wrapper
+case $OSTYPE in
+    darwin*)
+        __zshrc::brew_file_wrapper_init() {
+            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
+            # brew_prefix=$(brew --prefix)
+            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
+            brew_prefix=/usr/local
+            if [ -f $brew_prefix/etc/brew-wrap ];then
+                source $brew_prefix/etc/brew-wrap
+            fi
+        }
+        __zshrc::brew_file_wrapper_init
+        unfunction __zshrc::brew_file_wrapper_init
+        ;;
+esac
+
 
 # google cloud sdk
 __zshrc::gcloud_sdk_init() {
