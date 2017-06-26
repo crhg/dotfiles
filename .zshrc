@@ -31,6 +31,7 @@ setopt pushd_ignore_dups
 setopt equals
 setopt magic_equal_subst
 setopt print_eight_bit
+setopt print_exit_value
 
 alias ls='ls -Fh --color=always --width=$COLUMNS'
 export LESS=-R
@@ -51,7 +52,8 @@ setopt hist_save_no_dups
 setopt hist_no_store
 setopt hist_expand
 setopt share_history
-setopt EXTENDED_HISTORY
+setopt extended_history
+setopt append_history # historyファイルを上書きせず追加
 
 # macならkeychainからssh-addする
 case $OSTYPE in
