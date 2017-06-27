@@ -157,10 +157,6 @@ case $OSTYPE in
         ;;
 esac
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d54c4b5d38da820ff21e8684a88191c40cbb20a5
 # google cloud sdk
 __zshrc::gcloud_sdk_init() {
     # The next line updates PATH for the Google Cloud SDK.
