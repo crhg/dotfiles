@@ -172,4 +172,6 @@ __zshrc::gcloud_sdk_init() {
 __zshrc::gcloud_sdk_init
 unfunction __zshrc::gcloud_sdk_init
 
+fpath=(~/myfuncs $fpath)
+
 # End of lines added by compinstall
