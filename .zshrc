@@ -56,11 +56,11 @@ setopt extended_history
 setopt append_history # historyファイルを上書きせず追加
 
 # macならkeychainからssh-addする
-case $OSTYPE in
-    darwin*)
-        ssh-add -K 2>/dev/null >/dev/null
-        ;;
-esac
+# case $OSTYPE in
+#     darwin*)
+#         ssh-add -K 2>/dev/null >/dev/null
+#         ;;
+# esac
 
 # zplug
 export ZPLUG_PACKAGE=crhg/zplug
