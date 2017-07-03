@@ -139,6 +139,34 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
+unalias dot
+function dot() {
+    unfunction dot
+    case "$(git --version)" in
+        *"version 1."*)
+            function dot_wrapper() {
+                case "$1" in
+                    update)
+                        (
+                        echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
+                            dot_main cd && git pull
+                            dot_main set
+                        )
+                        ;;
+                    *)
+                    dot_main "$@"
+                    ;;
+                esac
+            }
+            alias dot=dot_wrapper
+            dot_wrapper "$@"
+            ;;
+        *)
+            alias dot=dot_main
+            dot_main "$@"
+            ;;
+    esac
+}
 
 # brew file wrapper
 case $OSTYPE in
