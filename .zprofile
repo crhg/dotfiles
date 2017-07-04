@@ -3,6 +3,7 @@ typeset -U path PATH
 if [ -z "$PATH_SET" ]; then
 
     path=(
+        ~/.local/bin
         /usr/local/opt/coreutils/libexec/gnubin
         $COMPOSER_HOME/vendor/bin
         $GOPATH/bin
