@@ -143,9 +143,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
-unalias dot
-function dot() {
-    unfunction dot
+function dot_boot() {
+    unfunction dot_boot
     case "$(git --version)" in
         *"version 1."*)
             function dot_wrapper() {
@@ -171,6 +170,7 @@ function dot() {
             ;;
     esac
 }
+alias dot=dot_boot
 
 # brew file wrapper
 case $OSTYPE in
