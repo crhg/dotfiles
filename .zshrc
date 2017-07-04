@@ -92,6 +92,13 @@ zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh", defer:2
 
+# zplug以下の*.zsh, *.sh, _*を全部zcompileする
+function zplug_compile() {
+    for i in ~/.zplug/**/*.{sh,zsh} ~/.zplug/**/_*; do
+        zcompile $i
+    done
+}
+
 # check コマンドで未インストール項目があるかどうか verbose にチェックし
 # false のとき（つまり未インストール項目がある）y/N プロンプトで
 # インストールする
@@ -103,10 +110,7 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
         if read -q; then
             echo; zplug install
 
-            # XXX: zplug以下の*.zshは全部zcompileしてみる
-            for i in ~/.zplug/**/*.{sh,zsh}; do
-                zcompile $i
-            done
+            zplug_compile
         fi
     fi
 fi
