@@ -92,9 +92,9 @@ zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh", defer:2
 
-# zplug以下の*.zsh, *.sh, _*を全部zcompileする
+# zplug以下の*.zsh, *.sh, を全部zcompileする
 function zplug_compile() {
-    for i in ~/.zplug/**/*.{sh,zsh} ~/.zplug/**/_*; do
+    for i in ~/.zplug/**/*.{sh,zsh}; do
         zcompile $i
     done
 }
