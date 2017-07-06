@@ -151,14 +151,14 @@ function dot_boot() {
                 case "$1" in
                     update)
                         (
-                        echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
+                            echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
                             dot_main cd && git pull
                             dot_main set
                         )
                         ;;
                     *)
-                    dot_main "$@"
-                    ;;
+                        dot_main "$@"
+                        ;;
                 esac
             }
             alias dot=dot_wrapper
