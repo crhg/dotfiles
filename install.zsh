@@ -20,4 +20,4 @@ case $OSTYPE in
 esac
 
 source =(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/dotfiles/master/.zshrc)
-dot clone && dot set -v
+dot_main clone && dot_main set -v
