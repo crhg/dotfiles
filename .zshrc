@@ -38,7 +38,7 @@ export LESS=-R
 # alias crontab='crontab -i'
 
 setopt prompt_subst
-PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B$HOST{%n}%b%%%{\e[m%}%u '
+PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%b%%%{\e[m%}%u '
 RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
 
 
