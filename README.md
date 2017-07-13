@@ -19,3 +19,5 @@ zsh, curl, git, vim+lua
 デフォルトのawkがnawkなのでzplugの要求条件を満たさない。gawkをインストールする
 
 vimはluaサポートが合った方がいいのでvim-gnomeあたりをインストールする
+
+日本語localeが入っていないことがあるのでlocale -aでチェックしなければlanguage-pack-jaをインストールする
