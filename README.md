@@ -1,12 +1,18 @@
 > dotfiles
 
-1. githubにsshの公開鍵を登録する
+1. (optional)githubにsshの公開鍵を登録する
 
 2. 以下を実行
 
 ```console
 zsh =(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/dotfiles/master/install.zsh)
 ```
+
+3. お好みで以下を設定
+
+3.1 .dotfiles/conf-availableの中で使いたい物に.dotfiles/conf-enabledからリンクを作成
+
+3.2 .loginからzshを起動する機能を使いたければ ~/.i_want_to_use_zsh を作成する
 
 ## CentOSのメモ
 
@@ -18,6 +24,6 @@ zsh, curl, git, vim+lua
 
 デフォルトのawkがnawkなのでzplugの要求条件を満たさない。gawkをインストールする
 
-vimはluaサポートが合った方がいいのでvim-gnomeあたりをインストールする
+vimはluaサポートがあった方がいいのでvim-gnomeあたりをインストールする
 
-日本語localeが入っていないことがあるのでlocale -aでチェックしなければlanguage-pack-jaをインストールする
+日本語localeが入っていないことがあるのでlocale -aでチェックし、なければlanguage-pack-jaをインストールする
