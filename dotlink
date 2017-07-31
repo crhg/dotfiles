@@ -6,7 +6,6 @@
 .vim,.vim
 .profile,.profile
 .perltidyrc,.perltidyrc
-.gitconfig,.gitconfig
 bin/github-set-ssh,bin/github-set-ssh
 myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .login,.login
