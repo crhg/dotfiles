@@ -192,13 +192,13 @@ esac
 # google cloud sdk
 __zshrc::gcloud_sdk_init() {
     # The next line updates PATH for the Google Cloud SDK.
-    if [ -f /Users/matsui/google-cloud-sdk/path.zsh.inc ]; then
-        source '/Users/matsui/google-cloud-sdk/path.zsh.inc'
+    if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then
+        source ~/google-cloud-sdk/path.zsh.inc
     fi
 
     # The next line enables shell command completion for gcloud.
-    if [ -f /Users/matsui/google-cloud-sdk/completion.zsh.inc ]; then
-        source '/Users/matsui/google-cloud-sdk/completion.zsh.inc'
+    if [ -f ~/google-cloud-sdk/completion.zsh.inc ]; then
+        source ~/google-cloud-sdk/completion.zsh.inc
     fi
 }
 __zshrc::gcloud_sdk_init
