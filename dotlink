@@ -10,3 +10,4 @@ bin/github-set-ssh,bin/github-set-ssh
 myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .login,.login
 .config/dot,.config/dot
+.ideavimrc,.ideavimrc
