@@ -31,3 +31,6 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'szw/vim-tags'
+
+[[plugins]]
+repo = 'elzr/vim-json'
