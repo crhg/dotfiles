@@ -136,7 +136,7 @@ fi
 
 # enhancd
 export ENHANCD_HOME_ARG=// # cdは元の動作にして替わりにcd //でヒストリ全部からの選択
-export ENHANCD_DOT_ARG=... # cd ..は元の動作にして替わりにcd ...で上位ディレクトリのリストから選択
+export ENHANCD_DOT_ARG=.   # cd ..は元の動作にして替わりにcd .で上位ディレクトリのリストから選択
 
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
