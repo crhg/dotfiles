@@ -91,6 +91,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh", defer:2
+zplug "felixr/docker-zsh-completion"
 
 # zplug以下の*.zsh, *.sh, を全部zcompileする
 function zplug_compile() {
