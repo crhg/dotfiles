@@ -5,6 +5,7 @@ if [ -z "$PATH_SET" ]; then
     path=(
         ~/.local/bin
         /usr/local/opt/coreutils/libexec/gnubin
+        /usr/local/opt/bison/bin
         $COMPOSER_HOME/vendor/bin
         $GOPATH/bin
         $GOROOT/bin
