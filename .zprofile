@@ -3,6 +3,7 @@ typeset -U path PATH
 if [ -z "$PATH_SET" ]; then
 
     path=(
+        ~/vendor/bin
         ~/.local/bin
         /usr/local/opt/coreutils/libexec/gnubin
         /usr/local/opt/bison/bin
