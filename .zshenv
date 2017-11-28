@@ -12,11 +12,6 @@ export GOROOT=/usr/local/opt/go/libexec
 
 export COMPOSER_HOME=$HOME/.composer
 
-# if [ -z "$CVSROOT" ]; then
-#     export CVSROOT=:ext:md-dev01:/ir/cvs
-#     export CVS_RSH=ssh-cvs
-# fi
-
 if [ -z "$SSH_AUTH_SOCK" -a -f $HOME/.ssh/SSH_ENV ]; then
     . $HOME/.ssh/SSH_ENV > /dev/null
 fi
