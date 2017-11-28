@@ -34,8 +34,11 @@ setopt print_eight_bit
 setopt print_exit_value
 
 alias ls='ls -Fh --color=always --width=$COLUMNS'
+export CLICOLOR=1
 export LESS=-R
 # alias crontab='crontab -i'
+
+export EDITOR=vim
 
 setopt prompt_subst
 PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%b%%%{\e[m%}%u '

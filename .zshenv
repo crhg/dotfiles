@@ -4,8 +4,6 @@ export MANPATH
 CCL_DEFAULT_DIRECTORY=$HOME/ccl
 export CCL_DEFAULT_DIRECTORY
 
-CLICOLOR=1
-export CLICOLOR
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
@@ -25,8 +23,6 @@ fi
 #     export JAVA_HOME=~/jdk
 #     export PATH=$JAVA_HOME/bin:$PATH
 # fi
-
-export EDITOR=vim
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
