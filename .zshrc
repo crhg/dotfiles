@@ -215,6 +215,7 @@ typeset -U manpath MANPATH
 manpath=(
     /opt/local/share/man
     /usr/local/share/man
+    /usr/share/man
     $manpath
 )
 manpath=(
