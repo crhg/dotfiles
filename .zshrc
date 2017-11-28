@@ -210,3 +210,15 @@ __zshrc::gcloud_sdk_init
 unfunction __zshrc::gcloud_sdk_init
 
 fpath=(~/myfuncs $fpath)
+
+typeset -U manpath MANPATH
+manpath=(
+    /opt/local/share/man
+    /usr/local/share/man
+    $manpath
+)
+manpath=(
+        # allow directories only (-/)
+        # reject world-writable directories (^W)
+    ${^manpath}(N-/^W)
+)

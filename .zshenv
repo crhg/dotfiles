@@ -1,5 +1,3 @@
-MANPATH=/opt/local/share/man:/usr/share/man
-export MANPATH
 
 CCL_DEFAULT_DIRECTORY=$HOME/ccl
 export CCL_DEFAULT_DIRECTORY
