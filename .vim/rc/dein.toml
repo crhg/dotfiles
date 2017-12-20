@@ -34,3 +34,6 @@ repo = 'szw/vim-tags'
 
 [[plugins]]
 repo = 'elzr/vim-json'
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
