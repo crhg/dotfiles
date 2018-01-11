@@ -1,6 +1,7 @@
 case $OSTYPE in
     darwin*)
-        setopt GLOBAL_RCS
+        if [[ -v restore_global_rcs ]]; then
+            setopt GLOBAL_RCS
+        fi
         ;;
 esac
-

@@ -28,8 +28,9 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 # macは/etc/zprofileでpathを上書きするので読み込みを抑止
 case $OSTYPE in
     darwin*)
-        if [[ -o l ]]; then
+        if [[ -o LOGIN && -o GLOBAL_RCS ]]; then
             unsetopt GLOBAL_RCS
+            restore_global_rcs=1
         fi
         ;;
 esac
