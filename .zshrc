@@ -142,6 +142,26 @@ fi
 export ENHANCD_HOME_ARG=// # cdは元の動作にして替わりにcd //でヒストリ全部からの選択
 export ENHANCD_DOT_ARG=.   # cd ..は元の動作にして替わりにcd .で上位ディレクトリのリストから選択
 
+__enhancd::filter::fuzzy() # redefine 
+{
+    if [[ -z $1 ]]; then
+        cat <&0
+    else
+        if [[ $ENHANCD_USE_FUZZY_MATCH == 1 ]]; then
+            if (( ${+commands[fuzzydirfilter]} )); then
+                fuzzydirfilter "$1"
+            else
+                awk \
+                    -f "$ENHANCD_ROOT/src/share/fuzzy.awk" \
+                    -v search_string="$1"
+            fi
+        else
+            # Case-insensitive (don't use fuzzy searhing)
+            awk '$0 ~ /\/.?'"$1"'[^\/]*$/{print $0}' 2>/dev/null
+        fi
+    fi
+}
+
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
