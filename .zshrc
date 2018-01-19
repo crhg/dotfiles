@@ -162,6 +162,9 @@ __enhancd::filter::fuzzy() # redefine
     fi
 }
 
+## cdの補完に一般ファイル含まれないようにする
+compdef __enhancd::cd=cd
+
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
