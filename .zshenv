@@ -69,5 +69,11 @@ if [ -z "$PATH_SET" ]; then
     export PATH_SET=1
 fi
 
+# pyenv
+if (( ${+commands[pyenv]} )); then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # ubuntuは/etc/zsh/zshrcでcompinitをするが不要なので抑止
 skip_global_compinit=1
