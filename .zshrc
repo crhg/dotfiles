@@ -65,6 +65,52 @@ setopt append_history # historyファイルを上書きせず追加
 #         ;;
 # esac
 
+# dot
+export DOT_REPO='https://github.com/crhg/dotfiles.git'
+export DOT_DIR=~/.dotfiles
+
+# gitのバージョン1系はdotがサポートしていないので代替関数
+function dot-pull() {
+    echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
+    dot_main cd && git pull
+}
+function dot-update() {
+    dot-pull
+    dot_main set
+}
+
+# brew file wrapper
+case $OSTYPE in
+    darwin*)
+        __zshrc::brew_file_wrapper_init() {
+            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
+            # brew_prefix=$(brew --prefix)
+            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
+            brew_prefix=/usr/local
+            if [ -f $brew_prefix/etc/brew-wrap ];then
+                source $brew_prefix/etc/brew-wrap
+            fi
+        }
+        __zshrc::brew_file_wrapper_init
+        unfunction __zshrc::brew_file_wrapper_init
+        ;;
+esac
+
+fpath=(~/myfuncs $fpath)
+
+typeset -U manpath MANPATH
+manpath=(
+    /opt/local/share/man
+    /usr/local/share/man
+    /usr/share/man
+    $manpath
+)
+manpath=(
+        # allow directories only (-/)
+        # reject world-writable directories (^W)
+    ${^manpath}(N-/^W)
+)
+
 # zplug
 export ZPLUG_PACKAGE=crhg/zplug
 export ZPLUG_PACKAGE_AT=master
@@ -168,37 +214,6 @@ compdef __enhancd::cd=cd
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# dot
-export DOT_REPO='https://github.com/crhg/dotfiles.git'
-export DOT_DIR=~/.dotfiles
-
-# gitのバージョン1系はdotがサポートしていないので代替関数
-function dot-pull() {
-    echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
-    dot_main cd && git pull
-}
-function dot-update() {
-    dot-pull
-    dot_main set
-}
-
-# brew file wrapper
-case $OSTYPE in
-    darwin*)
-        __zshrc::brew_file_wrapper_init() {
-            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
-            # brew_prefix=$(brew --prefix)
-            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
-            brew_prefix=/usr/local
-            if [ -f $brew_prefix/etc/brew-wrap ];then
-                source $brew_prefix/etc/brew-wrap
-            fi
-        }
-        __zshrc::brew_file_wrapper_init
-        unfunction __zshrc::brew_file_wrapper_init
-        ;;
-esac
-
 # google cloud sdk
 __zshrc::gcloud_sdk_init() {
     # The next line updates PATH for the Google Cloud SDK.
@@ -214,17 +229,3 @@ __zshrc::gcloud_sdk_init() {
 __zshrc::gcloud_sdk_init
 unfunction __zshrc::gcloud_sdk_init
 
-fpath=(~/myfuncs $fpath)
-
-typeset -U manpath MANPATH
-manpath=(
-    /opt/local/share/man
-    /usr/local/share/man
-    /usr/share/man
-    $manpath
-)
-manpath=(
-        # allow directories only (-/)
-        # reject world-writable directories (^W)
-    ${^manpath}(N-/^W)
-)
