@@ -166,6 +166,9 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
 fi
 
 # プラグインを読み込み、コマンドにパスを通す
+# XXX: compinitはzplug loadの中で行われる
+#      (zplugで読まれるプラグイン以外による)fpathの設定はここまでに行うこと
+#      (zplugで読まれるプラグイン以外で)compinitで用意される関数を必要とするものこの後に記述すること
 zplug load # --verbose
 
 # zcompdumpを必要に応じてzcompileする
