@@ -93,7 +93,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 # zplug "b4b4r07/enhancd", use:init.sh
 zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
-zplug "ssh0/dot", use:"*.sh", defer:2
+zplug "ssh0/dot", use:"*.sh"
 zplug "felixr/docker-zsh-completion"
 
 # zplug以下の*.zsh, *.sh, を全部zcompileする
@@ -171,34 +171,16 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
-function dot_boot() {
-    unfunction dot_boot
-    case "$(git --version)" in
-        *"version 1."*)
-            function dot_wrapper() {
-                case "$1" in
-                    update)
-                        (
-                            echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
-                            dot_main cd && git pull
-                            dot_main set
-                        )
-                        ;;
-                    *)
-                        dot_main "$@"
-                        ;;
-                esac
-            }
-            alias dot=dot_wrapper
-            dot_wrapper "$@"
-            ;;
-        *)
-            alias dot=dot_main
-            dot_main "$@"
-            ;;
-    esac
+
+# gitのバージョン1系はdotがサポートしていないので代替関数
+function dot-pull() {
+    echo "$(tput bold)$(tput setaf 4)Update dotfiles$(tput sgr0) dot cd && git pull"
+    dot_main cd && git pull
 }
-alias dot=dot_boot
+function dot-update() {
+    dot-pull
+    dot_main set
+}
 
 # brew file wrapper
 case $OSTYPE in
