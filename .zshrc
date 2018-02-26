@@ -165,11 +165,18 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
     fi
 fi
 
+# XXX: oh-my-zshの中でcomposer global config bin-dirコマンドを実行してpathを設定しているが
+#      とてつもなく遅い(約300ms)のでload中はaliasで置き換える
+alias composer="echo $HOME/.composer/vendor/bin"
+
 # プラグインを読み込み、コマンドにパスを通す
 # XXX: compinitはzplug loadの中で行われる
 #      (zplugで読まれるプラグイン以外による)fpathの設定はここまでに行うこと
 #      (zplugで読まれるプラグイン以外で)compinitで用意される関数を必要とするものこの後に記述すること
 zplug load # --verbose
+
+# composerのaliasを元に戻す
+unalias composer
 
 # zcompdumpを必要に応じてzcompileする
 __zshrc::zcompile_update() {
