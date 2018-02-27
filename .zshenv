@@ -1,3 +1,4 @@
+#zshenv_t0=$(print -P %D{%s.%10.})
 
 CCL_DEFAULT_DIRECTORY=$HOME/ccl
 export CCL_DEFAULT_DIRECTORY
@@ -77,3 +78,6 @@ fi
 
 # ubuntuは/etc/zsh/zshrcでcompinitをするが不要なので抑止
 skip_global_compinit=1
+
+#zshenv_t1=$(print -P %D{%s.%10.})
+#printf "zshenv %f\\n" $(( ( $zshenv_t1 - $zshenv_t0 ) * 1000 ))

@@ -3,25 +3,29 @@ if [ "$ZSHRC_PROFILE" != "" ]; then
     zmodload zsh/zprof && zprof > /dev/null
 fi
 alias profile_zshrc='ZSHRC_PROFILE=1 zsh -i -c zprof'
-alias time_zshrc='time zsh -i -c exit'
+alias time_zshrc='time ZSHRC_TIME=1 zsh -i -c exit'
 
 
-__zshrc::get_time() {
-    print -P %D{%s.%10.}
-}
+if [ "$ZSHRC_TIME" != "" ]; then
+    __zshrc::get_time() {
+        print -P %D{%s.%10.}
+    }
 
-typeset -E 20 _zshrc_debug_last_time=$(__zshrc::get_time)
-typeset -E 20 _zshrc_debug_base_time=$_zshrc_debug_last_time
+    typeset -E 20 _zshrc_debug_last_time=$(__zshrc::get_time)
+    typeset -E 20 _zshrc_debug_base_time=$_zshrc_debug_last_time
 
-__zshrc::debug_print() {
-    if [ $# != 0 ]; then
-        local -E 20 now=$(__zshrc::get_time)
-        local -E 20 dt0=$(( ($now - $_zshrc_debug_base_time) * 1000))
-        local -E 20 dt=$(( ($now - $_zshrc_debug_last_time) * 1000))
-        print -P %D{%H:%M:%S.%.} $(printf "%.2f" $dt0) $(printf "%.2f" $dt) "$@"
-    fi
-    _zshrc_debug_last_time=$(__zshrc::get_time)
-}
+    __zshrc::debug_print() {
+        if [ $# != 0 ]; then
+            local -E 20 now=$(__zshrc::get_time)
+            local -E 20 dt0=$(( ($now - $_zshrc_debug_base_time) * 1000))
+            local -E 20 dt=$(( ($now - $_zshrc_debug_last_time) * 1000))
+            print -P %D{%H:%M:%S.%.} $(printf "%.2f" $dt0) $(printf "%.2f" $dt) "$@"
+        fi
+        _zshrc_debug_last_time=$(__zshrc::get_time)
+    }
+else
+    __zshrc::debug_print() {}
+fi
 
 bindkey -e
 
@@ -65,6 +69,7 @@ setopt append_history # historyファイルを上書きせず追加
 #         ;;
 # esac
 
+__zshrc::debug_print before dot
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
@@ -78,6 +83,7 @@ function dot-update() {
     dot-pull
     dot_main set
 }
+__zshrc::debug_print dot
 
 # brew file wrapper
 case $OSTYPE in
@@ -95,6 +101,7 @@ case $OSTYPE in
         unfunction __zshrc::brew_file_wrapper_init
         ;;
 esac
+__zshrc::debug_print brew
 
 fpath=(~/myfuncs $fpath)
 
@@ -111,6 +118,7 @@ manpath=(
     ${^manpath}(N-/^W)
 )
 
+__zshrc::debug_print manpath
 # zplug
 export ZPLUG_PACKAGE=crhg/zplug
 export ZPLUG_PACKAGE_AT=master
@@ -127,6 +135,7 @@ export ZPLUG_LOADFILE=~/.zplug_packages.zsh
 [ -f $ZPLUG_LOADFILE ] || touch $ZPLUG_LOADFILE # ファイルがないとログが出てうるさいので作る
 
 source ~/.zplug/init.zsh
+__zshrc::debug_print zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2
 zplug "plugins/composer", from:oh-my-zsh, defer:2, if:'(( $+commands[composer] ))'
@@ -141,6 +150,8 @@ zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh"
 zplug "felixr/docker-zsh-completion"
+
+__zshrc::debug_print zplug setting
 
 # zplug以下の*.zsh, *.sh, を全部zcompileする
 function zplug_compile() {
@@ -164,6 +175,7 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
         fi
     fi
 fi
+__zshrc::debug_print zplug check
 
 # XXX: oh-my-zshの中でcomposer global config bin-dirコマンドを実行してpathを設定しているが
 #      とてつもなく遅い(約300ms)のでload中はaliasで置き換える
@@ -177,6 +189,7 @@ zplug load # --verbose
 
 # composerのaliasを元に戻す
 unalias composer
+__zshrc::debug_print zplug
 
 # zcompdumpを必要に応じてzcompileする
 __zshrc::zcompile_update() {
@@ -187,6 +200,7 @@ __zshrc::zcompile_update() {
 __zshrc::zcompile_update ~/.zplug/zcompdump
 __zshrc::zcompile_update ~/.zcompdump
 unfunction __zshrc::zcompile_update
+__zshrc::debug_print zcompile_update
 
 # zsh-history-substring-searchのキーバインド
 if whence history-substring-search-up > /dev/null; then
@@ -221,6 +235,9 @@ __enhancd::filter::fuzzy() # redefine
 ## cdの補完に一般ファイル含まれないようにする
 compdef __enhancd::cd=cd
 
+
+__zshrc::debug_print enhancd
+
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
@@ -238,4 +255,5 @@ __zshrc::gcloud_sdk_init() {
 }
 __zshrc::gcloud_sdk_init
 unfunction __zshrc::gcloud_sdk_init
+__zshrc::debug_print gcloud_sdk_init
 
