@@ -262,9 +262,7 @@ __zshrc::pyenv_init() {
     if (( ${+commands[pyenv]} )); then
         if [ ! -f ~/.zshrc_pyenv_init_cache ]; then
             {
-                # XXX: pyenv rehashは遅いので削る。
-                #      そのかわり環境が変わったら手打ちすること
-                pyenv init - | grep -v 'pyenv rehash'
+                pyenv init - --no-rehash
                 pyenv virtualenv-init -
             } > ~/.zshrc_pyenv_init_cache
             echo pyenv_init_cache updated
