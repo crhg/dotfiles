@@ -257,3 +257,9 @@ __zshrc::gcloud_sdk_init
 unfunction __zshrc::gcloud_sdk_init
 __zshrc::debug_print gcloud_sdk_init
 
+# pyenv
+if (( ${+commands[pyenv]} )); then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+__zshrc::debug_print pyenv
