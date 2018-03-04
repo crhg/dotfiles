@@ -120,14 +120,14 @@ manpath=(
 
 __zshrc::debug_print manpath
 # zplug
-export ZPLUG_PACKAGE=crhg/zplug
-export ZPLUG_PACKAGE_AT=master
+#$export ZPLUG_PACKAGE=crhg/zplug
+#export ZPLUG_PACKAGE_AT=master
 if [ ! -d ~/.zplug ]; then
     printf "Install zplug? [y/N]: "
     if read -q; then
         echo;
-        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
     fi
 fi
 
@@ -142,7 +142,7 @@ zplug "plugins/composer", from:oh-my-zsh, defer:2, if:'(( $+commands[composer] )
 zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "$ZPLUG_PACKAGE", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --self-manage'
+zplug "${ZPLUG_PACKAGE:-"zplug/zplug"}", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --self-manage'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 # zplug "b4b4r07/enhancd", use:init.sh
