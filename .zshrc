@@ -43,7 +43,11 @@ setopt magic_equal_subst
 setopt print_eight_bit
 setopt print_exit_value
 
-alias ls='ls -Fh --color=always --width=$COLUMNS'
+if (( $+commands[gls] )); then
+    alias ls='gls -Fh --color=always --width=$COLUMNS'
+else
+    alias ls='ls -Fh --color=always --width=$COLUMNS'
+fi
 export CLICOLOR=1
 export LESS=-R
 # alias crontab='crontab -i'
