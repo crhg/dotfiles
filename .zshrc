@@ -15,13 +15,19 @@ if [ "$ZSHRC_TIME" != "" ]; then
     typeset -E 20 _zshrc_debug_base_time=$_zshrc_debug_last_time
 
     __zshrc::debug_print() {
+        local -E 20 now=$(__zshrc::get_time)
+
         if [ $# != 0 ]; then
-            local -E 20 now=$(__zshrc::get_time)
             local -E 20 dt0=$(( ($now - $_zshrc_debug_base_time) * 1000))
             local -E 20 dt=$(( ($now - $_zshrc_debug_last_time) * 1000))
             print -P %D{%H:%M:%S.%.} $(printf "%.2f" $dt0) $(printf "%.2f" $dt) "$@"
         fi
-        _zshrc_debug_last_time=$(__zshrc::get_time)
+
+        # 出力に時間がかかるのでその分補正する
+        local -E 20 now2=$(__zshrc::get_time)
+        _zshrc_debug_base_time=$(( $_zshrc_debug_base_time + ($now2 - $now) ))
+
+        _zshrc_debug_last_time=$now2
     }
 else
     __zshrc::debug_print() {}
@@ -272,3 +278,5 @@ __zshrc::pyenv_init() {
 }
 __zshrc::pyenv_init
 __zshrc::debug_print pyenv
+
+__zshrc::debug_print zshrc end
