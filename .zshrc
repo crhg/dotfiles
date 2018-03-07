@@ -130,7 +130,7 @@ manpath=(
 
 __zshrc::debug_print manpath
 # zplug
-#$export ZPLUG_PACKAGE=crhg/zplug
+#export ZPLUG_PACKAGE=crhg/zplug
 #export ZPLUG_PACKAGE_AT=master
 if [ ! -d ~/.zplug ]; then
     printf "Install zplug? [y/N]: "
@@ -166,7 +166,13 @@ __zshrc::debug_print zplug setting
 # zplug以下の*.zsh, *.sh, を全部zcompileする
 function zplug_compile() {
     for i in ~/.zplug/**/*.{sh,zsh}; do
-        zcompile $i
+        case $i in
+        */test-data/*)
+            ;;
+        *)
+            zcompile $i
+            ;;
+        esac
     done
 }
 
