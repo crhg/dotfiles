@@ -130,14 +130,14 @@ manpath=(
 
 __zshrc::debug_print manpath
 # zplug
-#export ZPLUG_PACKAGE=crhg/zplug
-#export ZPLUG_PACKAGE_AT=master
+export ZPLUG_PACKAGE=crhg/zplug
+export ZPLUG_PACKAGE_AT=master
 if [ ! -d ~/.zplug ]; then
     printf "Install zplug? [y/N]: "
     if read -q; then
         echo;
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
+        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
     fi
 fi
 
