@@ -45,6 +45,7 @@ if [ -z "$PATH_SET" ]; then
     fi
 
     path=(
+        /Applications/Racket\ v6.12/bin
         ~/vendor/bin
         ~/.local/bin
         /usr/local/opt/coreutils/libexec/gnubin
