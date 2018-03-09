@@ -11,3 +11,4 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .login,.login
 .config/dot,.config/dot
 .ideavimrc,.ideavimrc
+.gitignore_global,.gitignore_global

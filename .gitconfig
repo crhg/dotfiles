@@ -5,3 +5,5 @@
 [user]
 	name = Manabu Matsui
 	email = manabu.matsui@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
