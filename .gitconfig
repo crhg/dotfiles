@@ -7,3 +7,8 @@
 	email = manabu.matsui@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+[color]
+	ui = auto
+[diff]
+	renames = true

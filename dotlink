@@ -13,3 +13,4 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .ideavimrc,.ideavimrc
 .docker,.docker
 .gitignore_global,.gitignore_global
+.gitattributes,.gitattributes

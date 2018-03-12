@@ -293,4 +293,7 @@ __zshrc::pyenv_init() {
 __zshrc::pyenv_init
 __zshrc::debug_print pyenv
 
+# gitの便利alias
+alias git-log-graph='git log --graph --decorate --oneline'
+
 __zshrc::debug_print zshrc end
