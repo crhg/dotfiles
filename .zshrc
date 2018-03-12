@@ -4,7 +4,7 @@ if [ "$ZSHRC_PROFILE" != "" ]; then
 fi
 alias profile_zshrc='ZSHRC_PROFILE=1 zsh -i -c zprof'
 alias time_zshrc='time ZSHRC_TIME=1 zsh -i -c exit'
-
+alias trace_zshrc='PS4="+%D{%H:%M:%S.%.} %N %i > " zsh -x -i -c exit'
 
 if [ "$ZSHRC_TIME" != "" ]; then
     __zshrc::get_time() {
