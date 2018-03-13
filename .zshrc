@@ -209,7 +209,7 @@ zplug load # --verbose
 
 # composerのaliasを元に戻す
 unalias composer
-__zshrc::debug_print zplug
+__zshrc::debug_print zplug load
 
 # zcompdumpを必要に応じてzcompileする
 __zshrc::zcompile_update() {
