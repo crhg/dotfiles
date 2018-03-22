@@ -6,6 +6,7 @@ alias profile_zshrc='ZSHRC_PROFILE=1 zsh -i -c zprof'
 alias time_zshrc='time ZSHRC_TIME=1 zsh -i -c exit'
 alias trace_zshrc='PS4="+%D{%H:%M:%S.%.} %N %i > " zsh -x -i -c exit'
 
+#ZSHRC_TIME=1
 if [ "$ZSHRC_TIME" != "" ]; then
     __zshrc::get_time() {
         print -P %D{%s.%10.}
@@ -180,12 +181,27 @@ function zplug_compile() {
     done
 }
 
-# check コマンドで未インストール項目があるかどうか verbose にチェックし
-# false のとき（つまり未インストール項目がある）y/N プロンプトで
-# インストールする
 # ただしcheckはそこそこ重いので最後のチェック以後に.zshrcが更新されているときのみにする
-if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
+if [ ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
+    # .zshrcが更新されていないとき
+    # いきなり__zplug::core::load::from_cacheを呼ぶだけでいいはず(たぶん)
+    #     なぜなら更新がないなら更新側で実行されるzplug loadで書かれたcacheは有効な筈である
+    # compinitに対する注意は下記とと同じ
+
+    # XXX: oh-my-zshの中でcomposer global config bin-dirコマンドを実行してpathを設定しているが
+    #      とてつもなく遅い(約300ms)のでload中はaliasで置き換える
+    alias composer="echo $HOME/.composer/vendor/bin"
+    __zplug::core::load::from_cache
+
+    # composerのaliasを元に戻す
+    unalias composer
+else
+    # .zshrcが最終チェック以降に更新されてたらこっちのルート(遅い)
     touch ~/.zplug/last_zshrc_check_time
+
+    # check コマンドで未インストール項目があるかどうか verbose にチェックし
+    # false のとき（つまり未インストール項目がある）y/N プロンプトで
+    # インストールする
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "
         if read -q; then
@@ -194,21 +210,13 @@ if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
             zplug_compile
         fi
     fi
+
+    # プラグインを読み込み、コマンドにパスを通す
+    # XXX: compinitはzplug loadの中で行われる
+    #      (zplugで読まれるプラグイン以外による)fpathの設定はここまでに行うこと
+    #      (zplugで読まれるプラグイン以外で)compinitで用意される関数を必要とするものこの後に記述すること
+    zplug load # --verbose
 fi
-__zshrc::debug_print zplug check
-
-# XXX: oh-my-zshの中でcomposer global config bin-dirコマンドを実行してpathを設定しているが
-#      とてつもなく遅い(約300ms)のでload中はaliasで置き換える
-alias composer="echo $HOME/.composer/vendor/bin"
-
-# プラグインを読み込み、コマンドにパスを通す
-# XXX: compinitはzplug loadの中で行われる
-#      (zplugで読まれるプラグイン以外による)fpathの設定はここまでに行うこと
-#      (zplugで読まれるプラグイン以外で)compinitで用意される関数を必要とするものこの後に記述すること
-zplug load # --verbose
-
-# composerのaliasを元に戻す
-unalias composer
 __zshrc::debug_print zplug load
 
 # zcompdumpを必要に応じてzcompileする
