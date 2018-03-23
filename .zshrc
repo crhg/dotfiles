@@ -171,7 +171,7 @@ __zshrc::debug_print zplug setting
 
 # zplug以下の*.zsh, *.sh, を全部zcompileする
 function zplug_compile() {
-    for i in ~/.zplug/**/*.{sh,zsh}; do
+    for i in ~/.zplug/**/*.{sh,zsh} ~/.zplug/**/_*; do
         case $i in
         */test-data/*)
             ;;
