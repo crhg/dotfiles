@@ -153,6 +153,7 @@ source ~/.zplug/init.zsh
 __zshrc::debug_print zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2
+zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/composer", from:oh-my-zsh, defer:2, if:'(( $+commands[composer] ))'
 zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-history-substring-search"
