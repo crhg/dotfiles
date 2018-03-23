@@ -6,7 +6,7 @@ alias profile_zshrc='ZSHRC_PROFILE=1 zsh -i -c zprof'
 alias time_zshrc='time ZSHRC_TIME=1 zsh -i -c exit'
 alias trace_zshrc='PS4="+%D{%H:%M:%S.%.} %N %i > " zsh -x -i -c exit'
 
-#ZSHRC_TIME=1
+# ZSHRC_TIME=1
 if [ "$ZSHRC_TIME" != "" ]; then
     __zshrc::get_time() {
         print -P %D{%s.%10.}
@@ -135,14 +135,14 @@ __zshrc::debug_print manpath
 # https://github.com/zplug/zplug/issues/468 の問題を回避するためZPLUG_HOMEを設定する
 export ZPLUG_HOME=~/.zplug
 
-# export ZPLUG_PACKAGE=crhg/zplug
-# export ZPLUG_PACKAGE_AT=master
+export ZPLUG_PACKAGE=crhg/zplug
+export ZPLUG_PACKAGE_AT=master
 if [ ! -d ~/.zplug ]; then
     printf "Install zplug? [y/N]: "
     if read -q; then
         echo;
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
+        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
     fi
 fi
 
