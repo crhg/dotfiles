@@ -153,6 +153,7 @@ source ~/.zplug/init.zsh
 __zshrc::debug_print zplug/init.zsh
 
 zplug "plugins/laravel5", from:oh-my-zsh, defer:2
+zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/composer", from:oh-my-zsh, defer:2, if:'(( $+commands[composer] ))'
 zplug "zsh-users/zsh-completions", defer:2
@@ -165,7 +166,6 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh"
-zplug "felixr/docker-zsh-completion"
 
 __zshrc::debug_print zplug setting
 
