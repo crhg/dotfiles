@@ -56,7 +56,7 @@ export LESS=-R
 export EDITOR=vim
 
 setopt prompt_subst
-PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%b%%%{\e[m%}%u '
+PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%(2L.($SHLVL).)%b%#%{\e[m%}%u '
 RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
 
 
