@@ -166,6 +166,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
 zplug "ssh0/dot", use:"*.sh"
+zplug "zsh-users/zsh-autosuggestions", defer:2
 
 __zshrc::debug_print zplug setting
 
