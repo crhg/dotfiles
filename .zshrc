@@ -238,6 +238,15 @@ if whence history-substring-search-up > /dev/null; then
     bindkey -M emacs '^N' history-substring-search-down
 fi
 
+# select-history
+# from https://blog.sgr-ksmt.org/2016/12/10/smart_fzf_history/
+function select-history() {
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
+
 # zsh-autosuggestionsの設定
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
