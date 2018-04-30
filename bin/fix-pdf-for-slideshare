@@ -1,0 +1,5 @@
+#!/bin/sh
+# Keynoteのpdfをslideshareに上げるときのフォント問題を修正する
+# https://qiita.com/yasulab/items/49511c27179be454d568
+
+LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g' "$1"
