@@ -14,3 +14,4 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .docker,.docker
 .gitignore_global,.gitignore_global
 .gitattributes,.gitattributes
+bin/at_home,bin/at_home
