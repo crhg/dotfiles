@@ -4,11 +4,16 @@
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" バージョン8未満なら1.5を使う
+let s:dein_tag_opt = ''
+if v:version < 800
+    let s:dein_tag_opt = '-b 1.5'
+endif
 
 " dein.vim がなければ github から落としてくる
 if &runtimepath !~# '/dein.vim'
     if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+        execute '!git clone '.s:dein_tag_opt.' https://github.com/Shougo/dein.vim' s:dein_repo_dir
     endif
     execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
