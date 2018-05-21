@@ -37,7 +37,11 @@ noremap <esc><esc> :noh<cr>
 
 " OSのクリップボードを使う設定
 if has('mac') && ! exists("$SSH_CLIENT")
-    set clipboard=unnamed,autoselect
+    if has('nvim')
+        set clipboard+=unnamedplus
+    else
+        set clipboard=unnamed,autoselect
+    endif
 endif
 
 " 文字列に埋め込まれたSQLやHTMLの色づけ
