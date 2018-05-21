@@ -2,8 +2,8 @@
 .zlogin,.zlogin
 .zprofile,.zprofile
 .zshenv,.zshenv
-.vimrc,.vimrc
 .vim,.vim
+.vim,.config/nvim
 .profile,.profile
 .perltidyrc,.perltidyrc
 bin/github-set-ssh,bin/github-set-ssh
