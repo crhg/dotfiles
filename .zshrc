@@ -53,7 +53,13 @@ export CLICOLOR=1
 export LESS=-R
 # alias crontab='crontab -i'
 
-export EDITOR=vim
+if (( $+commands[nvim] )); then
+    alias vi=nvim
+    export EDITOR=nvim
+else
+    alias vi=vim
+    export EDITOR=vim
+fi
 
 setopt prompt_subst
 PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%(2L.($SHLVL).)%b%#%{\e[m%}%u '
