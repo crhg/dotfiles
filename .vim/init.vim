@@ -38,7 +38,7 @@ noremap <esc><esc> :noh<cr>
 " OSのクリップボードを使う設定
 if has('mac') && ! exists("$SSH_CLIENT")
     if has('nvim')
-        set clipboard+=unnamedplus
+        set clipboard=unnamedplus
     else
         set clipboard=unnamed,autoselect
     endif
