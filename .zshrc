@@ -55,10 +55,8 @@ export LESS=-R
 
 if (( $+commands[nvim] )); then
     alias vi=nvim
-    export EDITOR=nvim
 else
     alias vi=vim
-    export EDITOR=vim
 fi
 
 setopt prompt_subst
