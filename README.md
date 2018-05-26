@@ -27,3 +27,12 @@ zsh, curl, git, vim+lua
 vimはluaサポートがあった方がいいのでvim-gnomeあたりをインストールする
 
 日本語localeが入っていないことがあるのでlocale -aでチェックし、なければlanguage-pack-jaをインストールする
+
+## deopleteのメモ
+
+deopleteはpython環境をちゃんと用意する必要がある。
+
+https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+
+の記述に従って準備すればよいが結構面倒くさい。
+
