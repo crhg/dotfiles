@@ -34,6 +34,12 @@ else
     __zshrc::debug_print() {}
 fi
 
+# zshrc用のキャッシュディレクトリ
+__zshrc_cache_dir=~/.cache/zshrc
+if [ \! -d $__zshrc_cache_dir ]; then
+    mkdir -p $__zshrc_cache_dir
+fi
+
 bindkey -e
 
 setopt extended_glob
@@ -304,19 +310,14 @@ unfunction __zshrc::gcloud_sdk_init
 __zshrc::debug_print gcloud_sdk_init
 
 # pyenv
-__zshrc::pyenv_init() {
-    if (( ${+commands[pyenv]} )); then
-        if [ ! -f ~/.zshrc_pyenv_init_cache ]; then
-            {
-                pyenv init - --no-rehash
-                pyenv virtualenv-init -
-            } > ~/.zshrc_pyenv_init_cache
-            echo pyenv_init_cache updated
-        fi
-        . ~/.zshrc_pyenv_init_cache
-    fi
-}
-__zshrc::pyenv_init
+if [ ! -f $__zshrc_cache_dir/pyenv-init ]; then
+    pyenv init - > $__zshrc_cache_dir/pyenv-init
+fi
+source $__zshrc_cache_dir/pyenv-init
+if [ ! -f $__zshrc_cache_dir/pyenv-virtialenv-init ]; then
+    pyenv virtualenv-init - > $__zshrc_cache_dir/pyenv-virtualenv-init
+fi
+source $__zshrc_cache_dir/pyenv-virtualenv-init
 __zshrc::debug_print pyenv
 
 # gitの便利alias

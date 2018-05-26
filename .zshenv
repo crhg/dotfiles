@@ -3,6 +3,7 @@
 CCL_DEFAULT_DIRECTORY=$HOME/ccl
 export CCL_DEFAULT_DIRECTORY
 
+export PYENV_ROOT=~/.pyenv
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
@@ -46,6 +47,7 @@ if [ -z "$PATH_SET" ]; then
 
     path=(
         /Applications/Racket\ v6.12/bin
+        $PYENV_ROOT/bin
         ~/.cargo/bin
         ~/vendor/bin
         ~/.local/bin
