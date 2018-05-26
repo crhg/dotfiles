@@ -5,11 +5,8 @@ repo = 'Shougo/dein.vim'
 repo = 'fatih/vim-go'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-if = 'has("lua")'
-hook_add = '''
-runtime! hook/neocomplete.vim
-'''
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
