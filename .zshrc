@@ -310,15 +310,17 @@ unfunction __zshrc::gcloud_sdk_init
 __zshrc::debug_print gcloud_sdk_init
 
 # pyenv
-if [ ! -f $__zshrc_cache_dir/pyenv-init ]; then
-    pyenv init - > $__zshrc_cache_dir/pyenv-init
+if (( $+commands[pyenv] )); then
+    if [ ! -f $__zshrc_cache_dir/pyenv-init ]; then
+	pyenv init - > $__zshrc_cache_dir/pyenv-init
+    fi
+    source $__zshrc_cache_dir/pyenv-init
+    if [ ! -f $__zshrc_cache_dir/pyenv-virtialenv-init ]; then
+	pyenv virtualenv-init - > $__zshrc_cache_dir/pyenv-virtualenv-init
+    fi
+    source $__zshrc_cache_dir/pyenv-virtualenv-init
+    __zshrc::debug_print pyenv
 fi
-source $__zshrc_cache_dir/pyenv-init
-if [ ! -f $__zshrc_cache_dir/pyenv-virtialenv-init ]; then
-    pyenv virtualenv-init - > $__zshrc_cache_dir/pyenv-virtualenv-init
-fi
-source $__zshrc_cache_dir/pyenv-virtualenv-init
-__zshrc::debug_print pyenv
 
 # gitの便利alias
 alias git-log-graph='git log --graph --decorate --oneline'
