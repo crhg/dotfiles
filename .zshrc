@@ -325,4 +325,9 @@ fi
 # gitの便利alias
 alias git-log-graph='git log --graph --decorate --oneline'
 
+# phpbrew
+if [ -f ~/.phpbrew/bashrc ]; then
+    source ~/.phpbrew/bashrc
+fi
+
 __zshrc::debug_print zshrc end
