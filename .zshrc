@@ -330,4 +330,7 @@ if [ -f ~/.phpbrew/bashrc ]; then
     source ~/.phpbrew/bashrc
 fi
 
+#amesh
+alias amesh='docker run -e TERM_PROGRAM --rm otiai10/amesh'
+
 __zshrc::debug_print zshrc end
