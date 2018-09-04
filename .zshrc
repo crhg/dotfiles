@@ -333,4 +333,7 @@ fi
 #amesh
 alias amesh='docker run -e TERM_PROGRAM --rm otiai10/amesh'
 
+# zargs
+autoload -U zargs
+
 __zshrc::debug_print zshrc end
