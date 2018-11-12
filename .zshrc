@@ -145,7 +145,7 @@ __zshrc::debug_print manpath
 # https://github.com/zplug/zplug/issues/468 の問題を回避するためZPLUG_HOMEを設定する
 export ZPLUG_HOME=~/.zplug
 
-export ZPLUG_PACKAGE=zplut/zplug
+export ZPLUG_PACKAGE=zplug/zplug
 export ZPLUG_PACKAGE_AT=master
 if [ ! -d ~/.zplug ]; then
     printf "Install zplug? [y/N]: "
@@ -153,6 +153,10 @@ if [ ! -d ~/.zplug ]; then
         echo;
         curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
         # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
+
+        # インストールが終わってないのにインストーラが終了する問題を回避するためsleepする
+        # https://github.com/zplug/installer/issues/11
+        sleep 2
     fi
 fi
 
