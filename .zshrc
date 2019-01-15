@@ -340,4 +340,10 @@ alias amesh='docker run -e TERM_PROGRAM --rm otiai10/amesh'
 # zargs
 autoload -U zargs
 
+# phpstan
+alias phpstan='docker run -v $PWD:/app --rm phpstan/phpstan'
+
+# phan
+phan() { docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan:latest $@; return $? }
+
 __zshrc::debug_print zshrc end
