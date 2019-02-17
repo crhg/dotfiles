@@ -288,6 +288,19 @@ __enhancd::filter::fuzzy() # redefine
     fi
 }
 
+__enhancd::filter::exists() # redefine
+{
+    local line
+
+    while read line
+    do
+        if [[ $line == /Volumes/* || -d $line ]]; then
+            echo "$line"
+        fi
+    done
+    # perl -ne 'chomp; (m:^/Volumes/: || -d $_) and print $_, "\n"'
+}
+
 ## cdの補完に一般ファイル含まれないようにする
 compdef __enhancd::cd=cd
 
