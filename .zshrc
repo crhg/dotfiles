@@ -94,6 +94,7 @@ __zshrc::debug_print before dot
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
+export DOT_COMMAND=DOOOOOOOOOOOOT
 
 # gitのバージョン1系はdotがサポートしていないので代替関数
 function dot-pull() {
