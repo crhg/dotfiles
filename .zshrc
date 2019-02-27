@@ -369,4 +369,7 @@ alias phpstan='docker run -v $PWD:/app --rm phpstan/phpstan'
 # phan
 phan() { docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan:latest $@; return $? }
 
+# ocaml
+alias ocaml='ledit ocaml'
+
 __zshrc::debug_print zshrc end
