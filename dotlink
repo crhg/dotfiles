@@ -16,3 +16,4 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .gitattributes,.gitattributes
 bin/at_home,bin/at_home
 bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
+.config/psysh/config.php,.config/psysh/config.php
