@@ -268,6 +268,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 # enhancd
 export ENHANCD_HOME_ARG=// # cdは元の動作にして替わりにcd //でヒストリ全部からの選択
 export ENHANCD_DOT_ARG=.   # cd ..は元の動作にして替わりにcd .で上位ディレクトリのリストから選択
+export ENHANCD_USE_FUZZY_MATCH=1
 
 __enhancd::filter::fuzzy() # redefine 
 {
@@ -276,7 +277,7 @@ __enhancd::filter::fuzzy() # redefine
     else
         if [[ $ENHANCD_USE_FUZZY_MATCH == 1 ]]; then
             if (( ${+commands[fuzzydirfilter]} )); then
-                fuzzydirfilter "$1"
+                fuzzydirfilter -s "$1"
             else
                 awk \
                     -f "$ENHANCD_ROOT/src/share/fuzzy.awk" \
