@@ -352,7 +352,7 @@ phpbrew-install() {
     # いくつかの必要なライブラリを見つけられない問題の対処
     # https://github.com/phpbrew/phpbrew/issues/966#issuecomment-453427216
     phpbrew install --jobs=$(sysctl -n hw.ncpu) $1 \
-        +default +mysql \
+        +default +mysql +sqlite3 \
         +iconv="$(brew --prefix libiconv)" \
         +bz2="$(brew --prefix bzip2)" \
         +zlib="$(brew --prefix zlib)"
