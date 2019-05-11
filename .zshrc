@@ -372,5 +372,7 @@ phan() { docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan
 
 # ocaml
 alias ocaml='ledit ocaml'
+test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 
 __zshrc::debug_print zshrc end
