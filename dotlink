@@ -17,3 +17,4 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 bin/at_home,bin/at_home
 bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
 .config/psysh/config.php,.config/psysh/config.php
+.hyper.js,.hyper.js
