@@ -1,2 +1,3 @@
 conf-enabled
 !.gitkeep
+.docker/application-template
