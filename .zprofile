@@ -5,3 +5,5 @@ case $OSTYPE in
         fi
         ;;
 esac
+
+export PATH="$HOME/.cargo/bin:$PATH"
