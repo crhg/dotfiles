@@ -1,5 +1,1 @@
-{
-  "debug" : true,
-  "experimental" : true
-}
-
+{"experimental":false,"debug":true}
