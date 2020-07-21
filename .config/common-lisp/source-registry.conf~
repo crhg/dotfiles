@@ -1,0 +1,5 @@
+;; -*- Lisp -*-
+(:source-registry
+  (:tree "~/quicklisp/dists/")
+  (:tree (:home "Lisp/"))
+  :INHERIT-CONFIGURATION)

@@ -20,3 +20,4 @@ bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
 .hyper.js,.hyper.js
 .emacs.d,.emacs.d
 .sbclrc,.sbclrc
+.config/common-lisp,.config/common-lisp
