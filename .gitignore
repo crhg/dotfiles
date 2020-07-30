@@ -1,3 +1,4 @@
 conf-enabled
 !.gitkeep
 .docker/application-template
+.emacs.d/elpa
