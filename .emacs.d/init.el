@@ -26,6 +26,10 @@
 
 (slime-setup '(slime-fancy slime-company))
 
+(put 'case-match 'common-lisp-indent-function '(as case))
+(put 'dbind 'common-lisp-indent-function '(as multiple-value-bind))
+(put 'let+ 'common-lisp-indent-function '(as let))
+
 (require 'lsp-mode)
 (lsp-register-client
    (make-lsp-client
