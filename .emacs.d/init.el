@@ -76,3 +76,10 @@
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; geiser
+(require 'geiser)
+(setq geise-active-implementations '(mit))
+(defun geiser-save ()
+  (interactive)
+  (geiser-repl-write-input-ring))
