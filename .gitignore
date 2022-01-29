@@ -3,3 +3,4 @@ conf-enabled
 .docker/application-template
 .emacs.d/elpa
 .emacs.d/transient
+.emacs.d/auto-save-list/
