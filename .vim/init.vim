@@ -73,8 +73,8 @@ set hidden
 set history=2000
 
 " merlin
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " filetypeの設定は最後にした方がいいらしい
 " http://d.hatena.ne.jp/wiredool/20120618/1340019962
