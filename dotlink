@@ -21,3 +21,4 @@ bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
 .emacs.d,.emacs.d
 .sbclrc,.sbclrc
 .config/common-lisp,.config/common-lisp
+.Brewfile,.Brewfile
