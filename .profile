@@ -6,4 +6,4 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export LANG=C
 export LC_CTYPE=ja_JP.UTF-8
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
