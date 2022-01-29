@@ -61,11 +61,14 @@ if [ -z "$PATH_SET" ]; then
         ~/.cabal/bin
         ~/bin
         $CCL_DEFAULT_DIRECTORY/scripts
+        /opt/homebrew/bin
         $path
         /usr/local/sbin
         /usr/sbin
         /sbin
     )
+
+    . "$HOME/.cargo/env"
 
     path=(
         # allow directories only (-/)
