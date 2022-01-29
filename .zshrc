@@ -107,24 +107,6 @@ function dot-update() {
 }
 __zshrc::debug_print dot
 
-# brew file wrapper
-case $OSTYPE in
-    darwin*)
-        __zshrc::brew_file_wrapper_init() {
-            export HOMEBREW_BREWFILE_APPSTORE=0 # AppStoreのアプリは含めない
-            # brew_prefix=$(brew --prefix)
-            # brew --prefixは意外に時間かかるのであまり変わらないだろうから決め打ちに変更
-            brew_prefix=/usr/local
-            if [ -f $brew_prefix/etc/brew-wrap ];then
-                source $brew_prefix/etc/brew-wrap
-            fi
-        }
-        __zshrc::brew_file_wrapper_init
-        unfunction __zshrc::brew_file_wrapper_init
-        ;;
-esac
-__zshrc::debug_print brew
-
 fpath=(~/myfuncs $fpath)
 
 typeset -U manpath MANPATH
