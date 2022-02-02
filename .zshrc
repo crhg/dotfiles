@@ -356,5 +356,7 @@ phan() { docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan
 alias ocaml='rlwrap ocaml'
 test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+# sail
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 __zshrc::debug_print zshrc end
