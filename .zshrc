@@ -53,7 +53,7 @@ setopt print_exit_value
 if (( $+commands[gls] )); then
     alias ls='gls -Fh --color=always --width=$COLUMNS'
 else
-    alias ls='ls -Fh --color=always --width=$COLUMNS'
+    alias ls='ls -Fh --color=always'
 fi
 export CLICOLOR=1
 export LESS=-R
