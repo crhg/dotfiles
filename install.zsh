@@ -5,19 +5,12 @@ function setup_homebrew() {
     fi
 }
 
-function setup_homebrew_file() {
-    brew install rcmdnk/file/brew-file
-    source $(brew --prefix)/etc/brew-wrap
-    brew set_repo --repo crhg/Brewfile
-    brew file install
-}
+source =(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/dotfiles/master/.zshrc)
+dot_main clone && dot_main set -v
 
 case $OSTYPE in
     darwin*)
         setup_homebrew
-        setup_homebrew_file
+        brew bundle --global
         ;;
 esac
-
-source =(curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/dotfiles/master/.zshrc)
-dot_main clone && dot_main set -v
