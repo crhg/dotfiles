@@ -68,7 +68,9 @@ if [ -z "$PATH_SET" ]; then
         /sbin
     )
 
-    . "$HOME/.cargo/env"
+    if [ -f $HOGHME/.cargo/env ]; then
+        . "$HOME/.cargo/env"
+    fi
 
     path=(
         # allow directories only (-/)

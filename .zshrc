@@ -53,7 +53,7 @@ setopt print_exit_value
 if (( $+commands[gls] )); then
     alias ls='gls -Fh --color=always --width=$COLUMNS'
 else
-    alias ls='ls -Fh --color=always --width=$COLUMNS'
+    alias ls='ls -Fh --color=always'
 fi
 export CLICOLOR=1
 export LESS=-R
@@ -157,8 +157,6 @@ zplug "zsh-users/zsh-completions", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "${ZPLUG_PACKAGE:-"zplug/zplug"}", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --self-manage'
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux, defer:2
 # zplug "b4b4r07/enhancd", use:init.sh
 zplug "crhg/enhancd", use:init.sh
 zplug "rupa/z", use:"*.sh", defer:2
@@ -357,6 +355,6 @@ alias ocaml='rlwrap ocaml'
 test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # sail
-alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias sail='bash vendor/bin/sail'
 
 __zshrc::debug_print zshrc end

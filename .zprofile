@@ -15,3 +15,5 @@ if [ -d /opt/homebrew ]; then
     export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 fi
+
+export PATH="$PATH:/Users/matsui/Library/Application Support/JetBrains/Toolbox/scripts"
