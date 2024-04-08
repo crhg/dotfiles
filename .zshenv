@@ -68,7 +68,7 @@ if [ -z "$PATH_SET" ]; then
         /sbin
     )
 
-    if [ -f $HOGHME/.cargo/env ]; then
+    if [ -f $HOME/.cargo/env ]; then
         . "$HOME/.cargo/env"
     fi
 
