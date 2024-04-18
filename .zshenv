@@ -59,6 +59,7 @@ if [ -z "$PATH_SET" ]; then
         $GOROOT/bin
         ~/lib/activator
         ~/.cabal/bin
+	~/.local/bin
         ~/bin
         $CCL_DEFAULT_DIRECTORY/scripts
         /opt/homebrew/bin
