@@ -3,6 +3,11 @@
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+(if (getenv "http_proxy")
+    (setq url-proxy-services
+	  `(("http" . (getenv "http_proxy"))
+	    ("https" . (getenv "https_proxy")))))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
