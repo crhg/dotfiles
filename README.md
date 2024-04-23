@@ -26,7 +26,11 @@ zsh, curl, git, vim+lua
 
 vimはluaサポートがあった方がいいのでvim-gnomeあたりをインストールする
 
-日本語localeが入っていないことがあるのでlocale -aでチェックし、なければlanguage-pack-jaをインストールする
+日本語localeが入っていないことがあるのでlocale -aでチェックし、なければlanguage-pack-jaをインストールする(ないとvimが文字化けする)
+
+fzfを入れる
+
+python-is-python3を入れる
 
 ## deopleteのメモ
 
