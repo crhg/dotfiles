@@ -66,7 +66,7 @@ else
 fi
 
 setopt prompt_subst
-PROMPT=$'%{\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%(2L.($SHLVL).)%b%#%{\e[m%}%u '
+PROMPT=$'%{\e]0;%m{%n}\a\e[$[32+$RANDOM % 5]m%}%U%B%m{%n}%(2L.($SHLVL).)%b%#%{\e[m%}%u '
 RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
 
 
