@@ -22,7 +22,7 @@ zsh, curl, git, vim+lua
 
 ## Ubuntuのメモ
 
-デフォルトのawkがnawkなのでzplugの要求条件を満たさない。gawkをインストールする
+古いubuntuはデフォルトのawkがnawkでzplugの要求条件を満たさないことがある。gawkをインストールする
 
 vimはluaサポートがあった方がいいのでvim-gnomeあたりをインストールする
 
