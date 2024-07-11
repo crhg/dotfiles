@@ -5,8 +5,8 @@
 
 (if (getenv "http_proxy")
     (setq url-proxy-services
-	  `(("http" . (getenv "http_proxy"))
-	    ("https" . (getenv "https_proxy")))))
+	  `(("http" . ,(replace-regexp-in-string "^.*://" "" (getenv "http_proxy")))
+	    ("https" . ,(replace-regexp-in-string "^.*://" "" (getenv "https_proxy"))))))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
