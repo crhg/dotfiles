@@ -17,6 +17,33 @@
 
 (setq inferior-lisp-program "sbcl")
 
+(defun require-package (package &optional min-version no-refresh)
+  "Install given PACKAGE, optionally requiring MIN-VERSION.
+If NO-REFRESH is non-nil, the available package lists will not be
+re-downloaded in order to locate PACKAGE."
+  (if (package-installed-p package min-version)
+    t
+    (if (or (assoc package package-archive-contents) no-refresh)
+      (if (boundp 'package-selected-packages)
+        ;; Record this as a package the user installed explicitly
+        (package-install package nil)
+        (package-install package))
+      (progn
+        (package-refresh-contents)
+        (require-package package min-version t)))))
+
+(defun maybe-require-package (package &optional min-version no-refresh)
+  "Try to install PACKAGE, and return non-nil if successful.
+In the event of failure, return nil and print a warning message.
+Optionally require MIN-VERSION.  If NO-REFRESH is non-nil, the
+available package lists will not be re-downloaded in order to
+locate PACKAGE."
+  (condition-case err
+    (require-package package min-version no-refresh)
+    (error
+      (message "Couldn't install optional package `%s': %S" package err)
+      nil)))
+
 ;; (require 'auto-complete)
 ;; (require 'auto-complete-config)
 ;; (global-auto-complete-mode t)
@@ -27,21 +54,24 @@
 ;; (eval-after-load "auto-complete"
 ;;   '(add-to-list 'ac-modes 'slime-repl-mode))
 
-(add-hook 'after-init-hook 'global-company-mode)
+(when (and (maybe-require-package 'slime)
+	   (maybe-require-package 'slime-company))
+  
+  (add-hook 'after-init-hook 'global-company-mode)
 
-(slime-setup '(slime-fancy slime-company))
+  (slime-setup '(slime-fancy slime-company))
 
-(put 'case-match 'common-lisp-indent-function '(as case))
-(put 'dbind 'common-lisp-indent-function '(as multiple-value-bind))
-(put 'let+ 'common-lisp-indent-function '(as let))
+  (put 'case-match 'common-lisp-indent-function '(as case))
+  (put 'dbind 'common-lisp-indent-function '(as multiple-value-bind))
+  (put 'let+ 'common-lisp-indent-function '(as let)))
 
-(require 'lsp-mode)
-(lsp-register-client
-   (make-lsp-client
-    :new-connection (lsp-stdio-connection
-                     '("opam" "exec" "--" "ocamlmerlin-lsp"))
-    :major-modes '(caml-mode tuareg-mode)
-    :server-id 'ocamlmerlin-lsp))
+;(require 'lsp-mode)
+;(lsp-register-client
+;   (make-lsp-client
+;    :new-connection (lsp-stdio-connection
+;                     '("opam" "exec" "--" "ocamlmerlin-lsp"))
+;    :major-modes '(caml-mode tuareg-mode)
+;    :server-id 'ocamlmerlin-lsp))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -49,8 +79,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime))))
+   '(magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -64,27 +94,28 @@
 (load-theme 'tango-dark t)
 
 ;; rainbow-delimiters を使うための設定
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(when (maybe-require-package 'rainbow-delimiters)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-;; 括弧の色を強調する設定
-(require 'cl-lib)
-(require 'color)
-(defun rainbow-delimiters-using-stronger-colors ()
-  (interactive)
-  (cl-loop
-   for index from 1 to rainbow-delimiters-max-face-count
-   do
-   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-    (cl-callf color-saturate-name (face-foreground face) 30))))
-(add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+  ;; 括弧の色を強調する設定
+  (when (and 
+	 (maybe-require-package 'cl-lib)
+	 (maybe-require-package 'color))
+    (defun rainbow-delimiters-using-stronger-colors ()
+      (interactive)
+      (cl-loop
+       for index from 1 to rainbow-delimiters-max-face-count
+       do
+       (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+	 (cl-callf color-saturate-name (face-foreground face) 30))))
+    (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)))
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; geiser
-(require 'geiser)
-(setq geise-active-implementations '(mit))
-(defun geiser-save ()
-  (interactive)
-  (geiser-repl-write-input-ring))
+(when (maybe-require-package 'geiser)
+  (setq geiser-active-implementations '(mit))
+  (defun geiser-save ()
+    (interactive)
+    (geiser-repl-write-input-ring)))
