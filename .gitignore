@@ -1,6 +1,8 @@
 conf-enabled
 !.gitkeep
 .docker/application-template
-.emacs.d/elpa
-.emacs.d/transient
-.emacs.d/auto-save-list/
+.emacs.d/*
+!.emacs.d/early-init.el
+!.emacs.d/init.el
+!.emacs.d/opam-user-setup.el
+
