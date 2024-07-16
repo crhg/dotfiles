@@ -103,6 +103,8 @@ locate PACKAGE."
 	 (maybe-require-package 'color))
     (defun rainbow-delimiters-using-stronger-colors ()
       (interactive)
+      (require 'cl-lib)
+      (require 'color)
       (cl-loop
        for index from 1 to rainbow-delimiters-max-face-count
        do
