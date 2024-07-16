@@ -79,7 +79,7 @@ locate PACKAGE."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
+   '(geiser-gauche magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -117,7 +117,7 @@ locate PACKAGE."
 
 ;; geiser
 (when (maybe-require-package 'geiser)
-  (setq geiser-active-implementations '(mit))
+  (setq geiser-active-implementations '(gauche mit racket))
   (defun geiser-save ()
     (interactive)
     (geiser-repl-write-input-ring)))
