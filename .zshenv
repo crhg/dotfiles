@@ -5,9 +5,6 @@ export CCL_DEFAULT_DIRECTORY
 
 export PYENV_ROOT=~/.pyenv
 
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-
 export COMPOSER_HOME=$HOME/.composer
 
 if [ -z "$SSH_AUTH_SOCK" -a -f $HOME/.ssh/SSH_ENV ]; then
