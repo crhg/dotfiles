@@ -5,8 +5,8 @@ export CCL_DEFAULT_DIRECTORY
 
 export PYENV_ROOT=~/.pyenv
 
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
+#export GOPATH=$HOME/go
+#export GOROOT=/usr/local/opt/go/libexec
 
 export COMPOSER_HOME=$HOME/.composer
 
