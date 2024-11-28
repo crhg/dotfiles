@@ -79,7 +79,7 @@ locate PACKAGE."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(geiser-gauche magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
+   '(geiser geiser-gauche magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
