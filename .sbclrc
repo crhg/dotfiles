@@ -6,3 +6,6 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+(setf asdf:*central-registry*
+  '(*default-pathname-defaults*))
+
