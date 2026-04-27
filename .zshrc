@@ -353,4 +353,7 @@ test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2
 # sail
 alias sail='bash vendor/bin/sail'
 
+# less
+alias less='less -R'
+
 __zshrc::debug_print zshrc end
