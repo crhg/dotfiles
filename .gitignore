@@ -6,3 +6,4 @@ conf-enabled
 !.emacs.d/init.el
 !.emacs.d/opam-user-setup.el
 
+/.vim/.netrwhist
