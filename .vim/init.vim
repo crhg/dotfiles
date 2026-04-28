@@ -74,7 +74,7 @@ set history=2000
 
 " merlin
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-let g:opamshare = /home/matsui/.opam/default/share
+let g:opamshare = "/home/matsui/.opam/default/share"
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 set rtp^="/home/matsui/.opam/default/share/ocp-indent/vim"
 
