@@ -84,3 +84,11 @@ skip_global_compinit=1
 
 #zshenv_t1=$(print -P %D{%s.%10.})
 #printf "zshenv %f\\n" $(( ( $zshenv_t1 - $zshenv_t0 ) * 1000 ))
+
+case "$TERM" in
+    xterm-256color)
+        if [[ -n "$WSLENV" ]]; then
+            export TERM=xterm
+        fi
+        ;;
+esac
