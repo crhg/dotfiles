@@ -1,0 +1,38 @@
+format = "$username@$hostname:$directory$git_branch$git_status$python$golang$nodejs$kubernetes$character"
+
+[username]
+show_always = true
+format = "$user"
+
+[hostname]
+ssh_only = false
+format = "$ssh_symbol$hostname"
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+
+[git_branch]
+format = " $style"
+symbol = "git:"
+
+[python]
+format = " $style"
+symbol = "py:"
+
+[golang]
+format = " $style"
+symbol = "go:"
+
+[nodejs]
+format = " $style"
+symbol = "njs:"
+
+[kubernetes]
+disabled = false
+format = " $style"
+symbol = "k8s:"
+
+[character]
+success_symbol = "\\$ "
+error_symbol = "[\\$ ](bold red)"

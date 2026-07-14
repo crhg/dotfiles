@@ -65,9 +65,13 @@ else
     alias vi=vim
 fi
 
-setopt prompt_subst
-PROMPT=$'%{\e]0;%n@%m: %2~\a\e[$[32+$RANDOM % 5]m%}%U%B%n@%m%(2L.($SHLVL).)%b%#%{\e[m%}%u '
-RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
+if (( $+commands[starship] )); then
+    eval "$(starship init zsh)" 
+else
+    setopt prompt_subst
+    PROMPT=$'%{\e]0;%n@%m: %2~\a\e[$[32+$RANDOM % 5]m%}%U%B%n@%m%(2L.($SHLVL).)%b%#%{\e[m%}%u '
+    RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
+fi
 
 
 export HISTFILE=${HOME}/.zsh_history

@@ -22,3 +22,4 @@ bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
 .sbclrc,.sbclrc
 .config/common-lisp,.config/common-lisp
 .Brewfile,.Brewfile
+.config/starship.toml,.config/starship.toml
