@@ -322,7 +322,7 @@ unfunction __zshrc::gcloud_sdk_init
 __zshrc::debug_print gcloud_sdk_init
 
 # pyenv
-if (( $+commands[pyenv] )); then
+if [ -n $USE_PYENV ] && (( $+commands[pyenv] )); then
     if [ ! -f $__zshrc_cache_dir/pyenv-init ]; then
 	pyenv init - > $__zshrc_cache_dir/pyenv-init
     fi
