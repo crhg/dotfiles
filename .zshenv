@@ -43,6 +43,7 @@ if [ -z "$PATH_SET" ]; then
     fi
 
     path=(
+        ~/.ghcup/bin
         /Applications/Racket\ v6.12/bin
         $PYENV_ROOT/bin
         ~/.cargo/bin
