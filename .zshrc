@@ -67,6 +67,19 @@ fi
 
 if (( $+commands[starship] )); then
     eval "$(starship init zsh)" 
+
+    function set_win_title() {
+        local repo=$(git rev-parse --show-toplevel 2>/dev/null)
+
+        if [[ -n $repo ]]; then
+            local root=${repo:t}
+            local rel=${PWD#$repo/}
+            print -Pn "\e]0;${root}/${rel}\a"
+        else
+            print -Pn "\e]0;%~\a"
+       fi
+    }
+    precmd_functions+=(set_win_title)
 else
     setopt prompt_subst
     PROMPT=$'%{\e]0;%n@%m: %2~\a\e[$[32+$RANDOM % 5]m%}%U%B%n@%m%(2L.($SHLVL).)%b%#%{\e[m%}%u '
