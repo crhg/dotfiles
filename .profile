@@ -7,3 +7,6 @@ export LANG=C
 export LC_CTYPE=ja_JP.UTF-8
 
 . "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
