@@ -53,8 +53,7 @@ if [ -z "$PATH_SET" ]; then
         /usr/local/opt/coreutils/libexec/gnubin
         /usr/local/opt/bison/bin
         $COMPOSER_HOME/vendor/bin
-        $GOPATH/bin
-        $GOROOT/bin
+        ~/go/bin
         ~/lib/activator
         ~/.cabal/bin
 	    ~/.local/bin
