@@ -73,11 +73,12 @@ if (( $+commands[starship] )); then
 
         if [[ -n $repo ]]; then
             local root=${repo:t}
-            local rel=${PWD#$repo/}
+            local rel=${PWD#$repo}
+            rel=${rel#/}
             print -Pn "\e]0;${root}/${rel}\a"
         else
             print -Pn "\e]0;%~\a"
-       fi
+        fi
     }
     precmd_functions+=(set_win_title)
 else
