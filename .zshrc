@@ -1,3 +1,8 @@
+# 標準入力がpipeだとzplugの警告が誤爆するのでスキップする
+# 通常pipeになることはないが、WebStormからvitestを起動するときに警告が出てうるさかった
+if [[ -p /dev/stdin ]]; then
+    return
+fi
 # .zshrcのprofilerなど
 if [ "$ZSHRC_PROFILE" != "" ]; then
     zmodload zsh/zprof && zprof > /dev/null
