@@ -61,7 +61,7 @@ else
     alias ls='ls -Fh --color=always'
 fi
 export CLICOLOR=1
-export LESS=-R
+export LESS=-FRX
 # alias crontab='crontab -i'
 
 if (( $+commands[nvim] )); then
