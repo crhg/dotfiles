@@ -40,3 +40,10 @@ https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
 
 の記述に従って準備すればよいが結構面倒くさい。
 
+## homebrewのメモ
+
+```angular2html
+brew bundle dump --force --file=~/.dotfiles/Brewfile
+brew bundle --file=~/.dotfiles/Brewfile
+```
+
