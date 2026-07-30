@@ -11,7 +11,6 @@ myfuncs/_mysql_utils,myfuncs/_mysql_utils
 .login,.login
 .config/dot,.config/dot
 .ideavimrc,.ideavimrc
-.docker,.docker
 .gitignore_global,.gitignore_global
 .gitattributes,.gitattributes
 bin/at_home,bin/at_home
