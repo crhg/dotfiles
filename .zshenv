@@ -89,6 +89,7 @@ case "$TERM" in
     xterm-256color)
         if [[ -n "$WSLENV" ]]; then
             export TERM=xterm
+            export COLORTERM=truecolor
         fi
         ;;
 esac
