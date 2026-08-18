@@ -1,86 +1,44 @@
 (keyboard-translate ?\C-h ?\C-?)
 (keyboard-translate ?\C-? ?\C-h)
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
 (if (getenv "http_proxy")
     (setq url-proxy-services
 	  `(("http" . ,(replace-regexp-in-string "^.*://" "" (getenv "http_proxy")))
 	    ("https" . ,(replace-regexp-in-string "^.*://" "" (getenv "https_proxy"))))))
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
 
-(setq inferior-lisp-program "sbcl")
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-    t
-    (if (or (assoc package package-archive-contents) no-refresh)
-      (if (boundp 'package-selected-packages)
-        ;; Record this as a package the user installed explicitly
-        (package-install package nil)
-        (package-install package))
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
+(require 'use-package)
+(setq use-package-always-ensure t)
 
-(defun maybe-require-package (package &optional min-version no-refresh)
-  "Try to install PACKAGE, and return non-nil if successful.
-In the event of failure, return nil and print a warning message.
-Optionally require MIN-VERSION.  If NO-REFRESH is non-nil, the
-available package lists will not be re-downloaded in order to
-locate PACKAGE."
-  (condition-case err
-    (require-package package min-version no-refresh)
-    (error
-      (message "Couldn't install optional package `%s': %S" package err)
-      nil)))
+;; 補完系
+(use-package vertico
+  :init
+  (vertico-mode)
+  :config
+  (savehist-mode 1)
+  (recentf-mode 1))
 
-;; (require 'auto-complete)
-;; (require 'auto-complete-config)
-;; (global-auto-complete-mode t)
-;; (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
+(use-package orderless)
+(use-package consult)
+(use-package marginalia :init (marginalia-mode))
 
-;; (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-;; (eval-after-load "auto-complete"
-;;   '(add-to-list 'ac-modes 'slime-repl-mode))
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  (setq completion-styles '(orderless basic)))
 
-(when (and (maybe-require-package 'slime)
-	   (maybe-require-package 'slime-company))
-  
-  (add-hook 'after-init-hook 'global-company-mode)
+(eglot-ensure)
 
-  (slime-setup '(slime-fancy slime-company))
-
-  (put 'case-match 'common-lisp-indent-function '(as case))
-  (put 'dbind 'common-lisp-indent-function '(as multiple-value-bind))
-  (put 'let+ 'common-lisp-indent-function '(as let)))
-
-;(require 'lsp-mode)
-;(lsp-register-client
-;   (make-lsp-client
-;    :new-connection (lsp-stdio-connection
-;                     '("opam" "exec" "--" "ocamlmerlin-lsp"))
-;    :major-modes '(caml-mode tuareg-mode)
-;    :server-id 'ocamlmerlin-lsp))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(geiser geiser-gauche magit rainbow-delimiters lsp-mode slime-company auto-install ac-slime)))
-
+;; face
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -91,30 +49,40 @@ locate PACKAGE."
 (load-theme 'tango-dark t)
 
 ;; rainbow-delimiters を使うための設定
-(when (maybe-require-package 'rainbow-delimiters)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :init
   ;; 括弧の色を強調する設定
-  (when (and 
-	 (maybe-require-package 'cl-lib)
-	 (maybe-require-package 'color))
-    (defun rainbow-delimiters-using-stronger-colors ()
-      (interactive)
-      (require 'cl-lib)
-      (require 'color)
-      (cl-loop
-       for index from 1 to rainbow-delimiters-max-face-count
-       do
-       (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-	 (cl-callf color-saturate-name (face-foreground face) 30))))
-    (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)))
+  (defun rainbow-delimiters-using-stronger-colors ()
+    (interactive)
+    (use-package cl-lib)
+    (use-package color)
+    (cl-loop
+     for index from 1 to rainbow-delimiters-max-face-count
+     do
+     (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+       (cl-callf color-saturate-name (face-foreground face) 30))))
+  (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors))
 
 ;; magit
-(global-set-key (kbd "C-x g") 'magit-status)
+(use-package magit :bind ("C-x g" . magit-status))
+
+;; sly
+(use-package sly :init (setq inferior-lisp-program "sbcl"))
 
 ;; geiser
-(when (maybe-require-package 'geiser)
+(use-package geiser
+  :config
   (setq geiser-active-implementations '(gauche mit racket))
   (defun geiser-save ()
     (interactive)
     (geiser-repl-write-input-ring)))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(lisp-mode-hook '(sly-editing-mode))
+ '(package-selected-packages
+   '(geiser vertico sly rainbow-delimiters orderless marginalia geiser-gauche esup embark corfu consult)))
