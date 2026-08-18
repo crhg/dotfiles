@@ -85,4 +85,5 @@
  ;; If there is more than one, they won't work right.
  '(lisp-mode-hook '(sly-editing-mode))
  '(package-selected-packages
-   '(geiser vertico sly rainbow-delimiters orderless marginalia geiser-gauche esup embark corfu consult)))
+   '(consult corfu geiser magit marginalia orderless rainbow-delimiters
+	     sly vertico)))
