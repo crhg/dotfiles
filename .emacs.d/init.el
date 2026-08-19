@@ -46,7 +46,8 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-theme 'tango-dark t)
+(use-package ef-themes)
+(load-theme 'ef-elea-dark t)
 
 ;; rainbow-delimiters を使うための設定
 (use-package rainbow-delimiters
@@ -85,5 +86,4 @@
  ;; If there is more than one, they won't work right.
  '(lisp-mode-hook '(sly-editing-mode))
  '(package-selected-packages
-   '(consult corfu geiser magit marginalia orderless rainbow-delimiters
-	     sly vertico)))
+   '(consult corfu geiser magit marginalia orderless rainbow-delimiters sly vertico)))
