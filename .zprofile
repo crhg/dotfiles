@@ -17,3 +17,10 @@ if [ -d /opt/homebrew ]; then
 fi
 
 export PATH="$PATH:/Users/matsui/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# wslのときはkeychainを使う
+if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+    if command -v keychain >/dev/null 2>&1; then
+        eval "$(keychain --eval --quiet --nogui ~/.ssh/id_rsa)"
+    fi
+fi
