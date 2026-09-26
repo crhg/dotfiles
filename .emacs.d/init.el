@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (keyboard-translate ?\C-h ?\C-?)
 (keyboard-translate ?\C-? ?\C-h)
 
