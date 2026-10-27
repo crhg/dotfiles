@@ -1,3 +1,5 @@
+#zmodload zsh/zprof
+
 # 標準入力がpipeだとzplugの警告が誤爆するのでスキップする
 # 通常pipeになることはないが、WebStormからvitestを起動するときに警告が出てうるさかった
 if [[ -p /dev/stdin ]]; then
@@ -368,6 +370,15 @@ alias less='less -R'
 
 __zshrc::debug_print zshrc end
 
+# nvmは必要な時にロードする
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+    unset -f nvm node npm npx
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    "$@"
+}
+node() { nvm node "$@" }
+npm() { nvm npm "$@" }
+npx() { nvm npx "$@" }
+
+#zprof
