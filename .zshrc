@@ -368,17 +368,10 @@ alias sail='bash vendor/bin/sail'
 # less
 alias less='less -R'
 
+# mise
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
+fi
+
 __zshrc::debug_print zshrc end
-
-# nvmは必要な時にロードする
-export NVM_DIR="$HOME/.nvm"
-nvm() {
-    unset -f nvm node npm npx
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    "$@"
-}
-node() { nvm node "$@" }
-npm() { nvm npm "$@" }
-npx() { nvm npx "$@" }
-
 #zprof
