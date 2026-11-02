@@ -21,3 +21,4 @@ bin/fix-pdf-for-slideshare,bin/fix-pdf-for-slideshare
 .sbclrc,.sbclrc
 .config/common-lisp,.config/common-lisp
 .config/starship.toml,.config/starship.toml
+.config/mise,.config/mise
