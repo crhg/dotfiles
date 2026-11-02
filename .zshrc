@@ -285,7 +285,7 @@ __enhancd::filter::fuzzy() # redefine
                     -v search_string="$1"
             fi
         else
-            # Case-insensitive (don't use fuzzy searhing)
+            # Case-insensitive (don't use fuzzy searching)
             awk '$0 ~ /\/.?'"$1"'[^\/]*$/{print $0}' 2>/dev/null
         fi
     fi
