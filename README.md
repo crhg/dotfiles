@@ -22,8 +22,6 @@ zsh, curl, git, vim+lua
 
 ## Ubuntuのメモ
 
-古いubuntuはデフォルトのawkがnawkでzplugの要求条件を満たさないことがある。gawkをインストールする
-
 vimはluaサポートがあった方がいいのでvim-gnomeあたりをインストールする
 
 日本語localeが入っていないことがあるのでlocale -aでチェックし、なければlanguage-pack-jaをインストールする(ないとvimが文字化けする)

@@ -1,0 +1,8 @@
+# antidote bundle definitions.  Keep syntax highlighting last.
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+crhg/enhancd path:init.sh
+rupa/z path:z.sh
+ssh0/dot path:dot.sh
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting

@@ -148,105 +148,48 @@ manpath=(
 )
 
 __zshrc::debug_print manpath
-# zplug
+# antidote
+# プラグイン一覧は dotfiles と一緒に管理し、生成済みの静的ロードファイルだけをキャッシュする。
+# そのため通常の起動では antidote 本体も Git も実行しない。
+typeset -g _zshrc_dir=${${(%):-%N}:A:h}
+typeset -g ANTIDOTE_HOME=${ZDOTDIR:-$HOME}/.antidote
+typeset -g _zsh_plugins_file=$_zshrc_dir/.zsh_plugins.txt
+typeset -g _zsh_plugins_cache=$__zshrc_cache_dir/antidote-plugins.zsh
 
-# https://github.com/zplug/zplug/issues/468 の問題を回避するためZPLUG_HOMEを設定する
-export ZPLUG_HOME=~/.zplug
-
-export ZPLUG_PACKAGE=zplug/zplug
-export ZPLUG_PACKAGE_AT=master
-if [ ! -d ~/.zplug ]; then
-    printf "Install zplug? [y/N]: "
+if [[ ! -r $ANTIDOTE_HOME/antidote.zsh ]]; then
+    printf 'Install antidote? [y/N]: '
     if read -q; then
-        echo;
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-        # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/crhg/zplug_installer/master/installer.zsh| zsh
-
-        # インストールが終わってないのにインストーラが終了する問題を回避するためsleepする
-        # https://github.com/zplug/installer/issues/11
-        sleep 2
+        echo
+        git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_HOME"
     fi
 fi
 
-export ZPLUG_LOADFILE=~/.zplug_packages.zsh
-[ -f $ZPLUG_LOADFILE ] || touch $ZPLUG_LOADFILE # ファイルがないとログが出てうるさいので作る
-
-source ~/.zplug/init.zsh
-__zshrc::debug_print zplug/init.zsh
-
-zplug "zsh-users/zsh-completions", defer:2
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "${ZPLUG_PACKAGE:-"zplug/zplug"}", at:"${ZPLUG_PACKAGE_AT:-"master"}", hook-build:'zplug --self-manage'
-# zplug "b4b4r07/enhancd", use:init.sh
-zplug "crhg/enhancd", use:init.sh
-zplug "rupa/z", use:"*.sh", defer:2
-zplug "ssh0/dot", use:"*.sh"
-zplug "zsh-users/zsh-autosuggestions", defer:2
-
-__zshrc::debug_print zplug setting
-
-# zplug以下の*.zsh, *.sh, を全部zcompileする
-function zplug_compile() {
-    for i in ~/.zplug/**/*.{sh,zsh} ~/.zplug/**/_*~*.zwc; do
-        case $i in
-        */test-data/*)
-            ;;
-        *)
-            zcompile $i
-            ;;
-        esac
-    done
-}
-
-# ただしcheckはそこそこ重いので最後のチェック以後に.zshrcが更新されているときのみにする
-if [ ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
-    # .zshrcが更新されていないとき
-    # いきなり__zplug::core::load::from_cacheを呼ぶだけでいいはず(たぶん)
-    #     なぜなら更新がないなら更新側で実行されるzplug loadで書かれたcacheは有効な筈である
-    # compinitに対する注意は下記とと同じ
-
-    # XXX: oh-my-zshの中でcomposer global config bin-dirコマンドを実行してpathを設定しているが
-    #      とてつもなく遅い(約300ms)のでload中はaliasで置き換える
-    alias composer="echo $HOME/.composer/vendor/bin"
-    __zplug::core::load::from_cache
-
-    # composerのaliasを元に戻す
-    unalias composer
-else
-    # .zshrcが最終チェック以降に更新されてたらこっちのルート(遅い)
-    touch ~/.zplug/last_zshrc_check_time
-
-    # check コマンドで未インストール項目があるかどうか verbose にチェックし
-    # false のとき（つまり未インストール項目がある）y/N プロンプトで
-    # インストールする
-    if ! zplug check --verbose; then
-        printf "Install? [y/N]: "
-        if read -q; then
-            echo; zplug install
-
-            zplug_compile
+if [[ -r $ANTIDOTE_HOME/antidote.zsh ]]; then
+    # 一覧または antidote 本体が更新されたときだけ、プラグインを取得して静的ファイルを再生成する。
+    if [[ ! $_zsh_plugins_cache -nt $_zsh_plugins_file || ! $_zsh_plugins_cache -nt $ANTIDOTE_HOME/antidote.zsh ]]; then
+        source "$ANTIDOTE_HOME/antidote.zsh"
+        typeset _zsh_plugins_cache_tmp=$_zsh_plugins_cache.$$
+        if antidote bundle < "$_zsh_plugins_file" > "$_zsh_plugins_cache_tmp"; then
+            mv "$_zsh_plugins_cache_tmp" "$_zsh_plugins_cache"
+        else
+            rm -f "$_zsh_plugins_cache_tmp"
+            print -u2 'antidote: plugin cache could not be generated'
         fi
     fi
 
-    # プラグインを読み込み、コマンドにパスを通す
-    # XXX: compinitはzplug loadの中で行われる
-    #      (zplugで読まれるプラグイン以外による)fpathの設定はここまでに行うこと
-    #      (zplugで読まれるプラグイン以外で)compinitで用意される関数を必要とするものこの後に記述すること
-    zplug load # --verbose
-fi
-__zshrc::debug_print zplug load
-
-# zcompdumpを必要に応じてzcompileする
-__zshrc::zcompile_update() {
-    if [ -f $1 -a \! \( -f $1.zwc -a $1.zwc -nt $1 \) ]; then
-        zcompile $1
+    if [[ -r $_zsh_plugins_cache ]]; then
+        source "$_zsh_plugins_cache"
+        # zplug は load 時に compinit を呼んでいた。antidote では明示する。
+        autoload -Uz compinit
+        compinit -C -d "$__zshrc_cache_dir/zcompdump"
     fi
-}
-__zshrc::zcompile_update ~/.zplug/zcompdump
-__zshrc::zcompile_update ~/.zcompdump
-unfunction __zshrc::zcompile_update
-__zshrc::debug_print zcompile_update
+else
+    print -u2 'antidote is not installed; skipping zsh plugins'
+fi
+
+unset _zsh_plugins_cache_tmp
+unset _zshrc_dir _zsh_plugins_file _zsh_plugins_cache
+__zshrc::debug_print antidote
 
 # zsh-history-substring-searchのキーバインド
 if whence history-substring-search-up > /dev/null; then
