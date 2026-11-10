@@ -68,10 +68,6 @@ if [ -z "$PATH_SET" ]; then
         /sbin
     )
 
-    if [ -f $HOME/.cargo/env ]; then
-        . "$HOME/.cargo/env"
-    fi
-
     path=(
         # allow directories only (-/)
         # reject world-writable directories (^W)
