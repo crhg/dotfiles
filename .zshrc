@@ -253,22 +253,6 @@ __zshrc::debug_print enhancd
 # highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-# google cloud sdk
-__zshrc::gcloud_sdk_init() {
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f ~/google-cloud-sdk/path.zsh.inc ]; then
-        source ~/google-cloud-sdk/path.zsh.inc
-    fi
-
-    # The next line enables shell command completion for gcloud.
-    if [ -f ~/google-cloud-sdk/completion.zsh.inc ]; then
-        source ~/google-cloud-sdk/completion.zsh.inc
-    fi
-}
-__zshrc::gcloud_sdk_init
-unfunction __zshrc::gcloud_sdk_init
-__zshrc::debug_print gcloud_sdk_init
-
 # gitの便利alias
 alias git-log-graph='git log --graph --decorate --oneline'
 
