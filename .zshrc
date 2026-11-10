@@ -199,30 +199,6 @@ fi
 
 # atuin
 # Ctrl-R と ↑ で履歴を検索する。通常の zsh 履歴も残すため、Atuin 未導入時も従来どおり動作する。
-if (( ! $+commands[atuin] )); then
-    printf 'Install Atuin? [y/N]: '
-    if read -q; then
-        echo
-        if (( $+commands[curl] )); then
-            # 公式のバイナリ専用インストーラー。setup.atuin.sh と違い shell / agent 設定は変更しない。
-            if curl --proto '=https' --tlsv1.2 -LsSf \
-                https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | sh; then
-                # 初回だけ既存の履歴をローカルDBへ取り込む。同期設定には影響しない。
-                if ! ~/.atuin/bin/atuin import auto; then
-                    print -u2 'Atuin history import failed; retry with: atuin import auto'
-                fi
-            else
-                print -u2 'Atuin installation failed'
-            fi
-        else
-            print -u2 'Atuin needs curl to install'
-        fi
-    fi
-fi
-
-if [[ -x ~/.atuin/bin/atuin ]]; then
-    path+=(~/.atuin/bin)
-fi
 if (( $+commands[atuin] )); then
     eval "$(atuin init zsh)"
 fi
