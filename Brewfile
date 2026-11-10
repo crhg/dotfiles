@@ -181,6 +181,8 @@ brew "fortune"
 brew "frei0r"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Shell history database and search UI
+brew "atuin"
 # R7RS Scheme implementation, developed to be a handy script interpreter
 brew "gauche"
 # GNU awk utility

@@ -47,6 +47,7 @@ if [ -z "$PATH_SET" ]; then
         /Applications/Racket\ v6.12/bin
         $PYENV_ROOT/bin
         ~/.cargo/bin
+        ~/.atuin/bin
         ~/.roswell/bin
         ~/vendor/bin
         ~/.local/bin

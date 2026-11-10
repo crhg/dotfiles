@@ -197,14 +197,35 @@ if whence history-substring-search-up > /dev/null; then
     bindkey -M emacs '^N' history-substring-search-down
 fi
 
-# select-history
-# from https://blog.sgr-ksmt.org/2016/12/10/smart_fzf_history/
-function select-history() {
-  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
-  CURSOR=$#BUFFER
-}
-zle -N select-history
-bindkey '^r' select-history
+# atuin
+# Ctrl-R と ↑ で履歴を検索する。通常の zsh 履歴も残すため、Atuin 未導入時も従来どおり動作する。
+if (( ! $+commands[atuin] )); then
+    printf 'Install Atuin? [y/N]: '
+    if read -q; then
+        echo
+        if (( $+commands[curl] )); then
+            # 公式のバイナリ専用インストーラー。setup.atuin.sh と違い shell / agent 設定は変更しない。
+            if curl --proto '=https' --tlsv1.2 -LsSf \
+                https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | sh; then
+                # 初回だけ既存の履歴をローカルDBへ取り込む。同期設定には影響しない。
+                if ! ~/.atuin/bin/atuin import auto; then
+                    print -u2 'Atuin history import failed; retry with: atuin import auto'
+                fi
+            else
+                print -u2 'Atuin installation failed'
+            fi
+        else
+            print -u2 'Atuin needs curl to install'
+        fi
+    fi
+fi
+
+if [[ -x ~/.atuin/bin/atuin ]]; then
+    path+=(~/.atuin/bin)
+fi
+if (( $+commands[atuin] )); then
+    eval "$(atuin init zsh)"
+fi
 
 # zsh-autosuggestionsの設定
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
