@@ -251,8 +251,6 @@ brew "gts"
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
-# Java-based scripting language
-brew "groovy"
 # GUI toolkit
 brew "gtk+"
 # GNU Ubiquitous Intelligent Language for Extensions
