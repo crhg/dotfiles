@@ -50,7 +50,6 @@ if [ -z "$PATH_SET" ]; then
         ~/.atuin/bin
         ~/.roswell/bin
         ~/vendor/bin
-        ~/.local/bin
         /usr/local/opt/coreutils/libexec/gnubin
         /usr/local/opt/bison/bin
         $COMPOSER_HOME/vendor/bin
