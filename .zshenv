@@ -16,11 +16,6 @@ fi
 #     export PATH=$ORACLE_HOME/bin:$PATH
 # fi
 
-# if [ -z "$JAVA_HOME" ]; then
-#     export JAVA_HOME=~/jdk
-#     export PATH=$JAVA_HOME/bin:$PATH
-# fi
-
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # path設定はzshenvで行うように統一する
