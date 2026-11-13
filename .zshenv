@@ -11,11 +11,6 @@ if [ -z "$SSH_AUTH_SOCK" -a -f $HOME/.ssh/SSH_ENV ]; then
     . $HOME/.ssh/SSH_ENV > /dev/null
 fi
 
-# if [ -z "$ORACLE_HOME" ]; then
-#     export ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
-#     export PATH=$ORACLE_HOME/bin:$PATH
-# fi
-
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # path設定はzshenvで行うように統一する
