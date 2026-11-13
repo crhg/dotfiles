@@ -16,8 +16,6 @@ if [ -d /opt/homebrew ]; then
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 fi
 
-export PATH="$PATH:/Users/matsui/Library/Application Support/JetBrains/Toolbox/scripts"
-
 # wslのときはkeychainを使う
 if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
     if command -v keychain >/dev/null 2>&1; then
