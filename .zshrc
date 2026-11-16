@@ -41,6 +41,8 @@ else
     __zshrc::debug_print() {}
 fi
 
+__zshrc::debug_print debug_print
+
 # zshrc用のキャッシュディレクトリ
 __zshrc_cache_dir=~/.cache/zshrc
 if [ \! -d $__zshrc_cache_dir ]; then
@@ -56,12 +58,15 @@ setopt equals
 setopt magic_equal_subst
 setopt print_eight_bit
 setopt print_exit_value
+__zshrc::debug_print setopt
 
 if (( $+commands[gls] )); then
     alias ls='gls -Fh --color=always --width=$COLUMNS'
 else
     alias ls='ls -Fh --color=always'
 fi
+__zshrc::debug_print ls
+
 export CLICOLOR=1
 export LESS=-FRX
 # alias crontab='crontab -i'
@@ -71,6 +76,9 @@ if (( $+commands[nvim] )); then
 else
     alias vi=vim
 fi
+__zshrc::debug_print vi
+
+__zshrc::debug_print start
 
 if (( $+commands[starship] )); then
     eval "$(starship init zsh)" 
@@ -93,7 +101,7 @@ else
     PROMPT=$'%{\e]0;%n@%m: %2~\a\e[$[32+$RANDOM % 5]m%}%U%B%n@%m%(2L.($SHLVL).)%b%#%{\e[m%}%u '
     RPROMPT=$'%{\e[33m%}[%~]%{\e[m%}'
 fi
-
+__zshrc::debug_print starship
 
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=10000
@@ -115,7 +123,6 @@ setopt append_history # historyファイルを上書きせず追加
 #         ;;
 # esac
 
-__zshrc::debug_print before dot
 # dot
 export DOT_REPO='https://github.com/crhg/dotfiles.git'
 export DOT_DIR=~/.dotfiles
@@ -202,6 +209,7 @@ fi
 if (( $+commands[atuin] )); then
     eval "$(atuin init zsh)"
 fi
+__zshrc::debug_print atuin
 
 # zsh-autosuggestionsの設定
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
@@ -247,7 +255,6 @@ __enhancd::filter::exists() # redefine
 ## cdの補完に一般ファイル含まれないようにする
 compdef __enhancd::cd=cd
 
-
 __zshrc::debug_print enhancd
 
 # highlighter
@@ -271,6 +278,7 @@ phan() { docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan
 # ocaml
 alias ocaml='rlwrap ocaml'
 test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+__zshrc::debug_print ocaml
 
 # sail
 alias sail='bash vendor/bin/sail'
@@ -282,6 +290,7 @@ alias less='less -R'
 if (( $+commands[mise] )); then
     eval "$(mise activate zsh)"
 fi
+__zshrc::debug_print mise
 
 __zshrc::debug_print zshrc end
 #zprof
