@@ -17,6 +17,7 @@ if [ -d /opt/homebrew ]; then
 fi
 
 # wslのときはkeychainを使う
+# JetBrains IDEから起動するとき、ログインはするがインタラクティブではないので.zprofileに記述する。
 if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
     if command -v keychain >/dev/null 2>&1; then
         eval "$(keychain --eval --quiet --nogui ~/.ssh/id_rsa)"
