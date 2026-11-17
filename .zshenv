@@ -7,10 +7,6 @@ export PYENV_ROOT=~/.pyenv
 
 export COMPOSER_HOME=$HOME/.composer
 
-if [ -z "$SSH_AUTH_SOCK" -a -f $HOME/.ssh/SSH_ENV ]; then
-    . $HOME/.ssh/SSH_ENV > /dev/null
-fi
-
 # path設定はzshenvで行うように統一する
 # macは/etc/zprofileでpathを上書きするので読み込みを抑止
 case $OSTYPE in
