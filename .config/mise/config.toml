@@ -2,3 +2,6 @@
 go = "latest"
 node = "24"
 "npm:@openai/codex" = "latest"
+
+[settings.self_update]
+auto = true
