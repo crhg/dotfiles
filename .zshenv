@@ -27,6 +27,7 @@ if [ -z "$PATH_SET" ]; then
     fi
 
     path=(
+        ~/.local/share/mise/shims
         ~/.ghcup/bin
         /Applications/Racket\ v6.12/bin
         $PYENV_ROOT/bin
