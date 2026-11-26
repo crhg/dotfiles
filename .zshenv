@@ -3,10 +3,6 @@
 CCL_DEFAULT_DIRECTORY=$HOME/ccl
 export CCL_DEFAULT_DIRECTORY
 
-export PYENV_ROOT=~/.pyenv
-
-export COMPOSER_HOME=$HOME/.composer
-
 # path設定はzshenvで行うように統一する
 # macは/etc/zprofileでpathを上書きするので読み込みを抑止
 case $OSTYPE in
@@ -38,7 +34,6 @@ if [ -z "$PATH_SET" ]; then
         ~/go/bin            # Go
         ~/.cabal/bin        # Haskell
         ~/.ghcup/bin        # GHC / Haskell toolchain
-        $PYENV_ROOT/bin
 
         # Package manager overrides
         /opt/homebrew/bin
