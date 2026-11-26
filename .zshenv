@@ -27,25 +27,26 @@ if [ -z "$PATH_SET" ]; then
     fi
 
     path=(
+        # User utilities
         ~/.local/share/mise/shims
-        ~/.ghcup/bin
-        /Applications/Racket\ v6.12/bin
-        $PYENV_ROOT/bin
-        ~/.cargo/bin
-        ~/.atuin/bin
-        ~/.roswell/bin
-        ~/vendor/bin
-        /usr/local/opt/coreutils/libexec/gnubin
-        /usr/local/opt/bison/bin
-        $COMPOSER_HOME/vendor/bin
-        ~/go/bin
-        ~/lib/activator
-        ~/.cabal/bin
         ~/.local/bin
         ~/bin
-        $CCL_DEFAULT_DIRECTORY/scripts
+        ~/vendor/bin
+
+        # Language package managers
+        ~/.cargo/bin        # Rust
+        ~/go/bin            # Go
+        ~/.cabal/bin        # Haskell
+        ~/.ghcup/bin        # GHC / Haskell toolchain
+        $PYENV_ROOT/bin
+
+        # Package manager overrides
         /opt/homebrew/bin
+
+        # Existing system PATH
         $path
+
+        # Additional system locations
         /snap/bin
         /usr/local/sbin
         /usr/sbin
