@@ -7,6 +7,8 @@ tap "sanemat/font"
 tap "smlsharp/smlsharp"
 tap "tholu/tap"
 tap "thoughtbot/formulae"
+# Generic-purpose lossless compression algorithm by Google
+brew "brotli"
 # Software library to render fonts
 brew "freetype"
 # C string library for manipulating Unicode strings
@@ -45,6 +47,8 @@ brew "apr-util"
 brew "argon2"
 # Spell checker with better logic than ispell
 brew "aspell"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
 # Automatic configure script builder
 brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -63,8 +67,6 @@ brew "binutils"
 brew "bison"
 # Collection of portable C++ source libraries
 brew "boost"
-# Generic-purpose lossless compression algorithm by Google
-brew "brotli"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # Freely available high-quality data compressor
@@ -130,7 +132,7 @@ brew "darcs"
 # Tools to manipulate dates with a focus on financial data
 brew "dateutils"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # Programming language for highly scalable real-time systems
 brew "erlang"
 # Functional metaprogramming aware language built on Erlang VM
@@ -145,10 +147,6 @@ brew "nettle"
 brew "p11-kit"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Asynchronous event library
-brew "libevent"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # GNU Emacs text editor
 brew "emacs"
 # Standalone library of the Fraunhofer FDK AAC code from Android
@@ -181,8 +179,6 @@ brew "fortune"
 brew "frei0r"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# Shell history database and search UI
-brew "atuin"
 # R7RS Scheme implementation, developed to be a handy script interpreter
 brew "gauche"
 # GNU awk utility
@@ -197,6 +193,8 @@ brew "gcc"
 brew "gflags"
 # Implementation of the ANS Forth language
 brew "gforth"
+# GitHub command-line tool
+brew "gh"
 # Glorious Glasgow Haskell Compilation System
 brew "ghc"
 # Installer for the general purpose language Haskell
@@ -251,6 +249,8 @@ brew "gts"
 brew "graphviz"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Java-based scripting language
+brew "groovy"
 # GUI toolkit
 brew "gtk+"
 # GNU Ubiquitous Intelligent Language for Extensions
@@ -289,6 +289,8 @@ brew "libbluray"
 brew "libedit"
 # Asynchronous event library
 brew "libev"
+# Asynchronous event library
+brew "libevent"
 # Portable Foreign Function Interface library
 brew "libffi"
 # Conversion library
@@ -363,8 +365,6 @@ brew "ocaml-findlib"
 brew "opam"
 # Audio codecs extracted from Android open source project
 brew "opencore-amr"
-# Development kit for the Java programming language
-brew "openjdk@11"
 # ISO-C API and CLI for generating UUIDs
 brew "ossp-uuid"
 # Perl compatible regular expressions library
@@ -457,6 +457,8 @@ brew "trash", link: true
 brew "tre"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Executes a program periodically, showing output fullscreen
@@ -480,8 +482,7 @@ cask "wezterm"
 cask "xquartz"
 mas "1Password for Safari", id: 1569813296
 mas "Blackmagic Disk Speed Test", id: 425264550
-mas "DaisyDisk(store)", id: 411643860
-mas "Duplicate Photos Fixer Pro", id: 963642514
+mas "DaisyDisk", id: 411643860
 mas "Evernote Web Clipper", id: 1481669779
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
@@ -493,8 +494,10 @@ mas "LINE", id: 539883307
 mas "Mattermost", id: 1614666244
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Simple Comic", id: 1497435571
 mas "Slack", id: 803453959
 mas "Xcode", id: 497799835
 mas "ZenPinballParty", id: 1536783591
-go "golang.org/x/tools/cmd/goimports"
-go "honnef.co/go/tools/cmd/staticcheck"
+go "cmd/go"
+go "cmd/gofmt"
+npm "corepack"
